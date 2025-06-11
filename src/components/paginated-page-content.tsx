@@ -124,9 +124,6 @@ export default function PaginatedPageContent({
 
   return (
     <div className="container mx-auto py-8 px-4 md:px-6">
-      <h2 className="text-3xl font-headline font-semibold mb-8 text-center text-foreground">
-        文章列表 - 第 {currentPage} 页
-      </h2>
       
       {displayPosts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
