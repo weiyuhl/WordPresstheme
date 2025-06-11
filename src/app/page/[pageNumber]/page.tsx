@@ -89,7 +89,7 @@ export default function PaginatedPage({ params }: PageParams) {
                   第 {currentPage} 页
                 </span>
                 <Link href={`/page/${nextPage}`}>
-                    <Button variant="outline">下一页 ({nextPage})</Button>
+                    <Button variant="outline">下一页</Button>
                 </Link>
             </div>
             <Link href="/">
@@ -130,10 +130,10 @@ export default function PaginatedPage({ params }: PageParams) {
       <div className="mt-12 flex items-center justify-between w-full max-w-sm mx-auto">
         {currentPage > 1 ? (
           <Link href={currentPage === 2 ? "/" : `/page/${prevPage}`}>
-            <Button variant="outline">上一页{ prevPage > 1 ? ` (${prevPage})` : ''}</Button>
+            <Button variant="outline">上一页</Button>
           </Link>
         ) : (
-          <div style={{width: prevPage > 1 ? '104px' : '88px'}} /> // Placeholder to balance layout, adjust width if button text changes
+          <div style={{width: '88px'}} /> /* Placeholder for Previous button to balance layout */
         )}
         
         <span className="text-lg font-medium text-muted-foreground">
@@ -142,10 +142,10 @@ export default function PaginatedPage({ params }: PageParams) {
 
         {postsToShow.length > 0 ? (
              <Link href={`/page/${nextPage}`}>
-                <Button variant="outline">下一页 ({nextPage})</Button>
+                <Button variant="outline">下一页</Button>
             </Link>
         ) : (
-          <div style={{width: '104px'}} /> // Placeholder for Next button width
+          <div style={{width: '88px'}} /> /* Placeholder for Next button to balance layout */
         )}
       </div>
        <div className="mt-8 text-center">
