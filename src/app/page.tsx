@@ -68,19 +68,10 @@ const placeholderPosts = [
 ];
 
 export default function Home() {
-  const currentDate = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
-
   return (
     <div className="container mx-auto py-8 px-4 md:px-6">
       <div className="lg:flex lg:gap-8">
         <main className="lg:w-2/3">
-          <div className="mb-6 pb-4 border-b text-sm text-muted-foreground">
-            <span>作者：用户名称</span>
-            <span className="mx-2">&bull;</span>
-            <span>分类：所有文章</span>
-            <span className="mx-2">&bull;</span>
-            <span>日期：{currentDate}</span>
-          </div>
           <div className="grid grid-cols-1 gap-8">
             {placeholderPosts.map((post) => (
               <BlogPostCard
@@ -91,8 +82,8 @@ export default function Home() {
                 imageHint={post.imageHint}
                 slug={post.slug}
                 tags={post.tags}
-                publishDate={post.publishDate} // Prop still passed for consistency
-                authorName={post.authorName}   // Prop still passed for consistency
+                publishDate={post.publishDate} 
+                authorName={post.authorName}   
               />
             ))}
           </div>

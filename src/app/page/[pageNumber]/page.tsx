@@ -78,7 +78,6 @@ interface PageParams {
 
 export default function Page({ params }: PageParams) {
   const currentPage = parseInt(params.pageNumber, 10);
-  const currentDate = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
 
   if (isNaN(currentPage) || currentPage < 1) {
     return (
@@ -98,13 +97,6 @@ export default function Page({ params }: PageParams) {
     <div className="container mx-auto py-8 px-4 md:px-6">
       <div className="lg:flex lg:gap-8">
         <main className="lg:w-2/3">
-          <div className="mb-6 pb-4 border-b text-sm text-muted-foreground">
-            <span>作者：用户名称</span>
-            <span className="mx-2">&bull;</span>
-            <span>分类：所有文章 - 第 {currentPage} 页</span>
-            <span className="mx-2">&bull;</span>
-            <span>日期：{currentDate}</span>
-          </div>
           <PaginatedPageContent
             currentPage={currentPage}
             TOTAL_PAGES={TOTAL_PAGES}
