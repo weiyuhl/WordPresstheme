@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { Menu, Search, X, Rss, Mail, Twitter } from 'lucide-react'; // Added Twitter
+import { Menu, Search, X, Rss, Mail, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
@@ -53,7 +53,7 @@ const footerNavLinks = [
 const socialLinks = [
   { href: 'https://weibo.com', label: '微博', icon: WeiboIcon, text: '微博' },
   { href: 'https://zhihu.com', label: '知乎', icon: ZhihuIcon, text: '知乎' },
-  { href: 'https://twitter.com', label: 'Twitter', icon: Twitter }, // Corrected to use Twitter icon from lucide-react
+  { href: 'https://twitter.com', label: 'Twitter', icon: Twitter },
   { href: 'https://github.com', label: 'GitHub', icon: GithubIcon },
   { href: '#', label: 'RSS', icon: Rss },
   { href: 'mailto:info@example.com', label: 'Email', icon: Mail },
@@ -85,7 +85,7 @@ export function Header() {
                 )}
                 style={{ top: '4rem', height: '60vh' }}
               >
-                <SheetTitle className="sr-only">导航菜单</SheetTitle>
+                <SheetTitle className="sr-only">网站名称</SheetTitle>
                 
                 <nav className="flex-grow flex flex-col items-center pt-2 pb-8 space-y-6 overflow-y-auto">
                   {mainNavLinks.map((link) => (
@@ -130,7 +130,7 @@ export function Header() {
 
         <div className="justify-self-center">
           <Link href="/" className="text-2xl md:text-3xl font-headline font-semibold tracking-tight hover:text-primary transition-colors duration-200 ease-in-out">
-            博客导航
+            网站名称
           </Link>
         </div>
 

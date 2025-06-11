@@ -5,7 +5,7 @@ import { Header } from '@/components/layout/header';
 import React from 'react'; // Added React import for Fragment
 
 export const metadata: Metadata = {
-  title: '博客导航',
+  title: '网站名称',
   description: '一个简约而优雅的博客网站。',
 };
 
