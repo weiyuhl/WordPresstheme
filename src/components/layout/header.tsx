@@ -48,7 +48,11 @@ export function Header() {
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="top" className="top-16 h-[calc(100vh-4rem)] flex flex-col p-0 bg-background text-foreground">
+            <SheetContent 
+              side="top" 
+              className="h-[calc(100vh-4rem)] flex flex-col p-0 bg-background text-foreground"
+              style={{ top: '4rem' }}
+            >
               <SheetHeader className="flex flex-row items-center justify-end p-4 border-b">
                 <SheetTitle className="sr-only">导航菜单</SheetTitle>
                 <SheetClose asChild>
