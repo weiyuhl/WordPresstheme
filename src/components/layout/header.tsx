@@ -62,7 +62,7 @@ export function Header() {
               >
                 <SheetTitle className="sr-only">导航菜单</SheetTitle>
                 
-                <nav className="flex-grow flex flex-col items-center justify-center pt-2 pb-8 space-y-6 overflow-y-auto">
+                <nav className="flex-grow flex flex-col items-center pt-2 pb-8 space-y-6 overflow-y-auto">
                   {mainNavLinks.map((link) => (
                     <SheetClose asChild key={link.href}>
                       <Link
