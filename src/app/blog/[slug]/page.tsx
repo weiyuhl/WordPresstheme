@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { AuthorCard } from '@/components/blog/author-card';
-import { CommentSection } from '@/components/blog/comment-section'; // Import CommentSection
+import { CommentSection } from '@/components/blog/comment-section';
 
 interface Post {
   slug: string;
@@ -15,6 +15,7 @@ interface Post {
   imageUrl: string;
   imageHint: string;
   tags: string[];
+  categories?: string[]; // 新增分类字段
   publishDate: string;
   content?: string;
 }
@@ -45,6 +46,7 @@ const placeholderPostsHome: Post[] = [
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'nature landscape',
     tags: ['自然', '探索'],
+    categories: ['自然探索', '环境保护'],
     publishDate: '2024-07-15',
   },
   {
@@ -54,6 +56,7 @@ const placeholderPostsHome: Post[] = [
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'technology abstract',
     tags: ['科技', '创新'],
+    categories: ['前沿科技', '技术趋势'],
     publishDate: '2024-07-18',
   },
   {
@@ -63,6 +66,7 @@ const placeholderPostsHome: Post[] = [
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'minimalist interior',
     tags: ['生活方式', '简约'],
+    categories: ['生活哲学', '家居整理'],
     publishDate: '2024-07-20',
   },
    {
@@ -72,6 +76,7 @@ const placeholderPostsHome: Post[] = [
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'food gourmet',
     tags: ['美食', '旅行'],
+    categories: ['环球美食', '饮食文化'],
     publishDate: '2024-07-22',
   },
   {
@@ -81,6 +86,7 @@ const placeholderPostsHome: Post[] = [
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'city skyline',
     tags: ['摄影', '城市'],
+    categories: ['摄影技巧', '城市探索'],
     publishDate: '2024-07-24',
   },
   {
@@ -90,6 +96,7 @@ const placeholderPostsHome: Post[] = [
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'zen meditation',
     tags: ['健康', '正念'],
+    categories: ['身心健康', '生活方式'],
     publishDate: '2024-07-26',
   },
 ];
@@ -102,6 +109,7 @@ const placeholderPostsPageN: Post[] = [
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'green building',
     tags: ['建筑', '可持续'],
+    categories: ['绿色建筑', '城市发展'],
     publishDate: '2024-07-28',
   },
   {
@@ -111,6 +119,7 @@ const placeholderPostsPageN: Post[] = [
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'medical technology',
     tags: ['AI', '医疗'],
+    categories: ['智慧医疗', '人工智能'],
     publishDate: '2024-07-30',
   },
   {
@@ -120,6 +129,7 @@ const placeholderPostsPageN: Post[] = [
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'ocean underwater',
     tags: ['海洋', '探索'],
+    categories: ['海洋科学', '探索发现'],
     publishDate: '2024-08-01',
   },
    {
@@ -129,6 +139,7 @@ const placeholderPostsPageN: Post[] = [
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'ancient ruins',
     tags: ['历史', '考古'],
+    categories: ['历史揭秘', '考古发现'],
     publishDate: '2024-08-03',
   },
   {
@@ -138,6 +149,7 @@ const placeholderPostsPageN: Post[] = [
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'writing book',
     tags: ['创意', '写作'],
+    categories: ['写作技巧', '创意表达'],
     publishDate: '2024-08-05',
   },
   {
@@ -147,6 +159,7 @@ const placeholderPostsPageN: Post[] = [
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'galaxy stars',
     tags: ['天文', '宇宙'],
+    categories: ['宇宙探索', '天文学'],
     publishDate: '2024-08-07',
   },
 ];
@@ -188,15 +201,24 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     <article className="container mx-auto py-12 px-4 md:px-6 max-w-3xl">
       <header className="mb-8">
         <h1 className="text-4xl font-headline font-bold mb-3 text-center">{post.title}</h1>
-        <div className="text-center text-muted-foreground text-sm mb-4">
+        <div className="text-center text-muted-foreground text-sm mb-6"> {/* Increased bottom margin */}
           <span>发布于 {post.publishDate}</span>
-        </div>
-        <div className="flex justify-center flex-wrap gap-2 mb-6">
-          {post.tags.map((tag) => (
-            <Badge key={tag} variant="secondary" className="font-normal">
-              {tag}
-            </Badge>
-          ))}
+          {post.categories && post.categories.length > 0 && (
+            <>
+              <span className="mx-2">|</span>
+              <span>
+                分类：
+                {post.categories.map((category, index) => (
+                  <React.Fragment key={category}>
+                    <Link href={`/category/${category.toLowerCase()}`} className="hover:text-primary transition-colors">
+                      {category}
+                    </Link>
+                    {index < post.categories!.length - 1 && ', '}
+                  </React.Fragment>
+                ))}
+              </span>
+            </>
+          )}
         </div>
       </header>
 
@@ -211,13 +233,10 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           priority={true} 
         />
       </div>
-
+      
       <div className="prose prose-lg dark:prose-invert max-w-none mx-auto text-foreground">
-        {post.content ? (
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
-        ) : (
-          <p>{post.description}</p>
-        )}
+        <p>{post.description}</p>
+        {post.content && <p className="text-xs text-muted-foreground italic">(调试信息：此文章包含额外的 'content' 字段，但当前未渲染以排查问题。)</p>}
       </div>
       
       <AuthorCard />
