@@ -81,7 +81,7 @@ export function Header() {
                 className={cn(
                   "fixed z-50 gap-4 bg-background shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-200 data-[state=open]:duration-300",
                   "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
-                  "flex flex-col p-0 text-foreground data-[state=closed]:[--tw-exit-translate-y:-50px] data-[state=open]:[--tw-enter-translate-y:-50px] custom-sheet-no-internal-close"
+                  "flex flex-col p-0 text-foreground custom-sheet-no-internal-close"
                 )}
                 style={{ top: '4rem', height: '60vh' }}
               >
@@ -149,7 +149,7 @@ export function Header() {
                 className={cn(
                   "fixed z-50 gap-4 bg-background shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-200 data-[state=open]:duration-300",
                   "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
-                  "flex flex-col p-6 text-foreground data-[state=closed]:[--tw-exit-translate-y:-50px] data-[state=open]:[--tw-enter-translate-y:-50px] custom-sheet-no-internal-close"
+                  "flex flex-col p-6 text-foreground custom-sheet-no-internal-close"
                 )}
                 style={{ top: '4rem', height: '40vh' }}
               >
