@@ -89,6 +89,6 @@
 }
 
 /* Custom rule to hide the internal close button of a specific SheetContent */
-.custom-sheet-no-internal-close > button[aria-label="Close"] {
+.custom-sheet-no-internal-close > button:has(svg.lucide-x) {
   display: none !important;
 }
