@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Menu, Search, X, Send, Twitter, Github, Rss, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -5,7 +7,6 @@ import Link from 'next/link';
 import {
   Sheet,
   SheetContent,
-  SheetHeader,
   SheetTrigger,
   SheetClose,
   SheetTitle,
@@ -37,30 +38,26 @@ const socialLinks = [
 ];
 
 export function Header() {
+  const [isSheetOpen, setIsSheetOpen] = React.useState(false);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
       <div className="container mx-auto h-16 grid grid-cols-3 items-center px-4 md:px-6">
         <div className="justify-self-start">
-          <Sheet>
+          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label="打开菜单" className="transition-colors duration-200 ease-in-out hover:text-accent-foreground">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="icon" aria-label={isSheetOpen ? "关闭菜单" : "打开菜单"} className="transition-colors duration-200 ease-in-out hover:text-accent-foreground">
+                {isSheetOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </Button>
             </SheetTrigger>
             <SheetContent
               side="top"
               className="h-[calc(100vh-4rem)] flex flex-col p-0 bg-background text-foreground [--tw-enter-translate-y:-50px] [--tw-exit-translate-y:-50px] data-[state=open]:duration-300 data-[state=closed]:duration-200"
               style={{ top: '4rem' }}
+              onCloseAutoFocus={(event) => event.preventDefault()}
             >
-              <SheetHeader className="flex flex-row items-center justify-end p-4 border-b">
-                <SheetTitle className="sr-only">导航菜单</SheetTitle>
-                <SheetClose asChild>
-                  <Button variant="ghost" size="icon" aria-label="关闭菜单">
-                    <X className="h-6 w-6" />
-                  </Button>
-                </SheetClose>
-              </SheetHeader>
-
+              <SheetTitle className="sr-only">导航菜单</SheetTitle>
+              
               <nav className="flex-grow flex flex-col items-center justify-center py-8 space-y-6 overflow-y-auto">
                 {mainNavLinks.map((link) => (
                   <SheetClose asChild key={link.href}>
