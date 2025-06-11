@@ -2,6 +2,7 @@
 import { BlogPostCard } from '@/components/blog-post-card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { RightSidebar } from '@/components/layout/right-sidebar';
 
 const placeholderPosts = [
   {
@@ -63,24 +64,31 @@ const placeholderPosts = [
 export default function Home() {
   return (
     <div className="container mx-auto py-8 px-4 md:px-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {placeholderPosts.map((post) => (
-          <BlogPostCard
-            key={post.slug}
-            title={post.title}
-            description={post.description}
-            imageUrl={post.imageUrl}
-            imageHint={post.imageHint}
-            slug={post.slug}
-            tags={post.tags}
-            publishDate={post.publishDate}
-          />
-        ))}
-      </div>
-      <div className="mt-12 flex justify-center">
-        <Link href="/page/2">
-          <Button variant="outline">下一页</Button>
-        </Link>
+      <div className="lg:flex lg:gap-8">
+        <main className="lg:w-2/3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {placeholderPosts.map((post) => (
+              <BlogPostCard
+                key={post.slug}
+                title={post.title}
+                description={post.description}
+                imageUrl={post.imageUrl}
+                imageHint={post.imageHint}
+                slug={post.slug}
+                tags={post.tags}
+                publishDate={post.publishDate}
+              />
+            ))}
+          </div>
+          <div className="mt-12 flex justify-center">
+            <Link href="/page/2">
+              <Button variant="outline">下一页</Button>
+            </Link>
+          </div>
+        </main>
+        <aside className="lg:w-1/3 mt-8 lg:mt-0">
+          <RightSidebar />
+        </aside>
       </div>
     </div>
   );

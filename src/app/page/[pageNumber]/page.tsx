@@ -1,10 +1,10 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import PaginatedPageContent from '@/components/paginated-page-content'; // New Client Component
+import PaginatedPageContent from '@/components/paginated-page-content'; 
 import type { Metadata } from 'next';
+import { RightSidebar } from '@/components/layout/right-sidebar';
 
-// 为分页页面创建不同的模拟文章数据
 const placeholderPostsPageN = [
   {
     slug: 'sustainable-architecture',
@@ -62,7 +62,7 @@ const placeholderPostsPageN = [
   },
 ];
 
-const TOTAL_PAGES = 5; // 定义总页数
+const TOTAL_PAGES = 5; 
 
 interface PageParams {
   params: {
@@ -85,17 +85,24 @@ export default function Page({ params }: PageParams) {
     );
   }
   
-  // The client component will handle its own logic for which posts to display based on currentPage
-  // We pass all possible posts for paginated pages here.
   const postsForClientComponent = placeholderPostsPageN;
 
   return (
-    <PaginatedPageContent
-      currentPage={currentPage}
-      TOTAL_PAGES={TOTAL_PAGES}
-      initialPosts={postsForClientComponent}
-      pageNumberString={params.pageNumber}
-    />
+    <div className="container mx-auto py-8 px-4 md:px-6">
+      <div className="lg:flex lg:gap-8">
+        <main className="lg:w-2/3">
+          <PaginatedPageContent
+            currentPage={currentPage}
+            TOTAL_PAGES={TOTAL_PAGES}
+            initialPosts={postsForClientComponent}
+            pageNumberString={params.pageNumber}
+          />
+        </main>
+        <aside className="lg:w-1/3 mt-8 lg:mt-0">
+          <RightSidebar />
+        </aside>
+      </div>
+    </div>
   );
 }
 
