@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { AuthorCard } from '@/components/blog/author-card';
+import { CommentSection } from '@/components/blog/comment-section'; // Import CommentSection
 
 interface Post {
   slug: string;
@@ -218,13 +219,15 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           <p>{post.description}</p>
         )}
       </div>
+      
+      <AuthorCard />
+      <CommentSection />
 
       <div className="mt-12 text-center">
         <Link href="/">
           <Button variant="outline">返回首页</Button>
         </Link>
       </div>
-      <AuthorCard />
     </article>
   );
 }
