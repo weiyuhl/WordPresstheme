@@ -67,16 +67,12 @@ const placeholderPostsPageN = [
   },
 ];
 
+const TOTAL_PAGES = 5; // 定义总页数
 
 export default function PaginatedPage({ params }: PageParams) {
   const currentPage = parseInt(params.pageNumber, 10);
   const nextPage = currentPage + 1;
   const prevPage = currentPage - 1;
-
-  // 根据页码选择文章数据 (简单示例，真实应用中应从API获取)
-  // For this example, we'll show placeholderPostsPageN for any page >= 2
-  // And no posts for page 1 on this dynamic route, as it's handled by src/app/page.tsx for its content
-  const postsToShow = currentPage > 1 ? placeholderPostsPageN : [];
 
   if (currentPage === 1 && params.pageNumber === "1") {
       return (
@@ -86,11 +82,15 @@ export default function PaginatedPage({ params }: PageParams) {
             <div className="flex items-center justify-between w-full max-w-sm mx-auto mb-8">
                 <div style={{width: '88px'}} /> {/* Placeholder for Previous button width to balance layout */}
                 <span className="text-lg font-medium text-muted-foreground">
-                  第 {currentPage} 页
+                  {TOTAL_PAGES} / {currentPage}
                 </span>
-                <Link href={`/page/${nextPage}`}>
-                    <Button variant="outline">下一页</Button>
-                </Link>
+                {currentPage < TOTAL_PAGES ? (
+                    <Link href={`/page/${nextPage}`}>
+                        <Button variant="outline">下一页</Button>
+                    </Link>
+                ) : (
+                    <div style={{width: '88px'}} />
+                )}
             </div>
             <Link href="/">
                 <Button variant="link">返回首页</Button>
@@ -99,6 +99,7 @@ export default function PaginatedPage({ params }: PageParams) {
       );
   }
 
+  const displayPosts = (currentPage > 1 && currentPage <= TOTAL_PAGES) ? placeholderPostsPageN : [];
 
   return (
     <div className="container mx-auto py-8 px-4 md:px-6">
@@ -106,9 +107,9 @@ export default function PaginatedPage({ params }: PageParams) {
         文章列表 - 第 {currentPage} 页
       </h2>
       
-      {postsToShow.length > 0 ? (
+      {displayPosts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {postsToShow.map((post) => (
+          {displayPosts.map((post) => (
             <BlogPostCard
               key={post.slug}
               title={post.title}
@@ -123,7 +124,7 @@ export default function PaginatedPage({ params }: PageParams) {
         </div>
       ) : (
         <p className="text-center text-muted-foreground my-12">
-          { currentPage > 1 ? `第 ${currentPage} 页没有更多文章了。` : "" }
+          {currentPage > TOTAL_PAGES ? "没有更多文章了。" : (currentPage > 1 ? `第 ${currentPage} 页没有更多文章了。` : "")}
         </p>
       )}
       
@@ -137,10 +138,10 @@ export default function PaginatedPage({ params }: PageParams) {
         )}
         
         <span className="text-lg font-medium text-muted-foreground">
-          第 {currentPage} 页
+          {TOTAL_PAGES} / {currentPage}
         </span>
 
-        {postsToShow.length > 0 ? (
+        {currentPage < TOTAL_PAGES ? (
              <Link href={`/page/${nextPage}`}>
                 <Button variant="outline">下一页</Button>
             </Link>
