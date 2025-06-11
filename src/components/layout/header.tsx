@@ -1,5 +1,5 @@
 
-import React from 'react'; // Added React import
+import React from 'react';
 import { Menu, Search, X, Send, Twitter, Github, Rss, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -9,8 +9,8 @@ import {
   SheetHeader,
   SheetTrigger,
   SheetClose,
+  SheetTitle, // Added SheetTitle import
 } from "@/components/ui/sheet";
-import { Separator } from '@/components/ui/separator';
 
 const mainNavLinks = [
   { href: '/category/php', label: 'PHP' },
@@ -50,6 +50,7 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="top" className="h-full flex flex-col p-0 bg-background text-foreground">
               <SheetHeader className="flex flex-row items-center justify-between p-4 border-b">
+                <SheetTitle className="sr-only">导航菜单</SheetTitle> 
                 <SheetClose asChild>
                   <Button variant="ghost" size="icon" aria-label="关闭菜单">
                     <X className="h-6 w-6" />
@@ -111,7 +112,6 @@ export function Header() {
         </div>
         
         <div className="justify-self-end">
-           {/* Search button is now inside the sheet for mobile, keep one here for larger screens or remove if redundant */}
            <Button variant="ghost" size="icon" aria-label="搜索" className="transition-colors duration-200 ease-in-out hover:text-accent-foreground md:flex hidden">
             <Search className="h-6 w-6" />
           </Button>
