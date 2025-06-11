@@ -55,8 +55,8 @@ export function Header() {
               {/* SheetOverlay removed to prevent dimming */}
               <SheetContent
                 side="top"
-                className="h-[calc(100vh-4rem)] flex flex-col p-0 bg-background text-foreground [--tw-enter-translate-y:-50px] [--tw-exit-translate-y:-50px] data-[state=open]:duration-300 data-[state=closed]:duration-200 custom-sheet-no-internal-close"
-                style={{ top: '4rem' }}
+                className="flex flex-col p-0 bg-background text-foreground [--tw-enter-translate-y:-50px] [--tw-exit-translate-y:-50px] data-[state=open]:duration-300 data-[state=closed]:duration-200 custom-sheet-no-internal-close"
+                style={{ top: '4rem', height: '60vh' }}
                 onCloseAutoFocus={(event) => event.preventDefault()}
                 onOpenAutoFocus={(event) => event.preventDefault()}
               >
