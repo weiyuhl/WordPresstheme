@@ -1,7 +1,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { BlogPostCard } from '@/components/blog-post-card'; // 导入 BlogPostCard
+import { BlogPostCard } from '@/components/blog-post-card';
 
 interface PageParams {
   params: {
@@ -116,7 +116,7 @@ export default function PaginatedPage({ params }: PageParams) {
               description={post.description}
               imageUrl={post.imageUrl}
               imageHint={post.imageHint}
-              slug={`/blog/${post.slug}`}
+              slug={`/blog/${post.slug}`} // Assuming blog post slugs are unique across pages or prefix them
               tags={post.tags}
               publishDate={post.publishDate}
             />
@@ -124,7 +124,7 @@ export default function PaginatedPage({ params }: PageParams) {
         </div>
       ) : (
         <p className="text-center text-muted-foreground my-12">
-          {currentPage > TOTAL_PAGES ? "没有更多文章了。" : (currentPage > 1 ? `第 ${currentPage} 页没有更多文章了。` : "")}
+          {currentPage > TOTAL_PAGES ? "没有更多文章了。" : (currentPage >= 1 && currentPage <=TOTAL_PAGES ? `第 ${currentPage} 页没有更多文章了。` : "无效的页码。")}
         </p>
       )}
       
@@ -159,8 +159,15 @@ export default function PaginatedPage({ params }: PageParams) {
 }
 
 export async function generateMetadata({ params }: PageParams) {
+  const pageNumber = parseInt(params.pageNumber, 10);
+  if (isNaN(pageNumber) || pageNumber < 1) {
+    return {
+      title: '无效页码 - 网站名称',
+      description: '请求的页面不存在。',
+    };
+  }
   return {
-    title: `第 ${params.pageNumber} 页 - 网站名称`,
-    description: `博客文章列表第 ${params.pageNumber} 页。`,
+    title: `第 ${pageNumber} 页 - 网站名称`,
+    description: `博客文章列表第 ${pageNumber} 页。`,
   };
 }
