@@ -199,6 +199,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         </div>
       </header>
 
+      {/*
       <div className="aspect-video relative w-full mb-8 rounded-lg overflow-hidden shadow-lg">
         <Image
           src={post.imageUrl}
@@ -210,6 +211,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           priority={true} 
         />
       </div>
+      */}
 
       <div className="prose prose-lg dark:prose-invert max-w-none mx-auto text-foreground">
         {post.content ? (
@@ -224,7 +226,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           <Button variant="outline">返回首页</Button>
         </Link>
       </div>
-      <AuthorCard />
+      {/* <AuthorCard /> */}
     </article>
   );
 }
