@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { Menu, Search, X, Rss, Mail, Github, Twitter as TwitterIconLucide } from 'lucide-react'; // Renamed Twitter to avoid conflict
+import { Menu, Search, X, Rss, Mail, Github as GithubLucide, Twitter as TwitterIconLucide } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
@@ -70,7 +70,7 @@ export function Header() {
         <div className="justify-self-start">
           <Sheet open={isMenuSheetOpen} onOpenChange={(open) => {
             if (open) {
-              setIsSearchSheetOpen(false);
+              setIsSearchSheetOpen(false); 
             }
             setIsMenuSheetOpen(open);
           }}>
@@ -181,4 +181,3 @@ export function Header() {
     </header>
   );
 }
-
