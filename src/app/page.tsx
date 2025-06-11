@@ -1,6 +1,7 @@
 
 import { BlogPostCard } from '@/components/blog-post-card';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 const placeholderPosts = [
   {
@@ -80,7 +81,9 @@ export default function Home() {
         ))}
       </div>
       <div className="mt-12 flex justify-center">
-        <Button variant="outline">下一页</Button>
+        <Link href="/page/2">
+          <Button variant="outline">下一页</Button>
+        </Link>
       </div>
     </div>
   );
