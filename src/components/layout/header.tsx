@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { Menu, Search, X, Rss, Mail, Github as GithubLucide, Twitter as TwitterIconLucide } from 'lucide-react';
+import { Menu, Search, X, Rss, Mail, Twitter as TwitterIconLucide, Github as GithubLucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
@@ -88,8 +88,6 @@ export function Header() {
                   "flex flex-col p-0 text-foreground [--tw-enter-translate-y:-50px] [--tw-exit-translate-y:-50px] custom-sheet-no-internal-close" 
                 )}
                 style={{ top: '4rem', height: '60vh' }}
-                onCloseAutoFocus={(event) => event.preventDefault()}
-                onOpenAutoFocus={(event) => event.preventDefault()}
               >
                 <SheetTitle className="sr-only">导航菜单</SheetTitle>
                 
@@ -161,8 +159,6 @@ export function Header() {
                   "flex flex-col p-6 text-foreground [--tw-enter-translate-y:-50px] [--tw-exit-translate-y:-50px] custom-sheet-no-internal-close"
                 )}
                 style={{ top: '4rem', height: '40vh' }}
-                onCloseAutoFocus={(event) => event.preventDefault()}
-                onOpenAutoFocus={(event) => event.preventDefault()}
               >
                 <SheetTitle className="sr-only">搜索内容</SheetTitle>
                 <div className="flex flex-col space-y-4 h-full items-center justify-center">
