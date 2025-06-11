@@ -9,7 +9,7 @@ import {
   SheetHeader,
   SheetTrigger,
   SheetClose,
-  SheetTitle, // Added SheetTitle import
+  SheetTitle,
 } from "@/components/ui/sheet";
 
 const mainNavLinks = [
@@ -49,22 +49,16 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="top" className="h-full flex flex-col p-0 bg-background text-foreground">
-              <SheetHeader className="flex flex-row items-center justify-between p-4 border-b">
-                <SheetTitle className="sr-only">导航菜单</SheetTitle> 
+              <SheetHeader className="flex flex-row items-center justify-end p-4 border-b"> {/* Modified justify-content */}
+                <SheetTitle className="sr-only">导航菜单</SheetTitle>
                 <SheetClose asChild>
                   <Button variant="ghost" size="icon" aria-label="关闭菜单">
                     <X className="h-6 w-6" />
                   </Button>
                 </SheetClose>
-                <Link href="/" className="flex items-center text-xl font-semibold tracking-tight hover:text-primary transition-colors duration-200 ease-in-out">
-                  <Send className="h-6 w-6 mr-2" />
-                  博客导航
-                </Link>
-                <Button variant="ghost" size="icon" aria-label="搜索" className="transition-colors duration-200 ease-in-out hover:text-accent-foreground">
-                  <Search className="h-6 w-6" />
-                </Button>
+                {/* Removed Link and Search Button from here */}
               </SheetHeader>
-              
+
               <nav className="flex-grow flex flex-col items-center justify-center py-8 space-y-6 overflow-y-auto">
                 {mainNavLinks.map((link) => (
                   <SheetClose asChild key={link.href}>
@@ -104,13 +98,13 @@ export function Header() {
             </SheetContent>
           </Sheet>
         </div>
-        
+
         <div className="justify-self-center">
           <Link href="/" className="text-2xl md:text-3xl font-headline font-semibold tracking-tight hover:text-primary transition-colors duration-200 ease-in-out">
             博客导航
           </Link>
         </div>
-        
+
         <div className="justify-self-end">
            <Button variant="ghost" size="icon" aria-label="搜索" className="transition-colors duration-200 ease-in-out hover:text-accent-foreground md:flex hidden">
             <Search className="h-6 w-6" />
