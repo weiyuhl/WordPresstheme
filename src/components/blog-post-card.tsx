@@ -15,11 +15,11 @@ interface BlogPostCardProps {
   imageHint: string;
   slug: string;
   tags: string[];
-  publishDate: string;
-  authorName?: string;
+  publishDate: string; // Prop kept for data consistency, but not displayed here
+  authorName?: string; // Prop kept for data consistency, but not displayed here
 }
 
-export function BlogPostCard({ title, description, imageUrl, imageHint, slug, tags, publishDate, authorName }: BlogPostCardProps) {
+export function BlogPostCard({ title, description, imageUrl, imageHint, slug, tags }: BlogPostCardProps) {
   return (
     <Card className="flex flex-col md:flex-row overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
       {/* Image Container */}
@@ -47,25 +47,16 @@ export function BlogPostCard({ title, description, imageUrl, imageHint, slug, ta
           {description}
         </CardDescription>
         
-        <div className="mt-auto pt-4"> {/* Footer section for tags, author, date */}
-          <div className="flex flex-wrap gap-1 mb-2"> {/* Tags */}
-            {tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className="font-normal">
-                {tag}
-              </Badge>
-            ))}
-          </div>
-          <div className="text-xs text-muted-foreground flex items-center"> {/* Author and Date container */}
-            {authorName && (
-                <span className="font-medium text-foreground/80">{authorName}</span>
-            )}
-            {authorName && publishDate && (
-                <span className="mx-1.5">&bull;</span>
-            )}
-            {publishDate && (
-                <span>{publishDate}</span>
-            )}
-          </div>
+        <div className="mt-auto pt-4 pb-6"> {/* Footer section for tags. Increased pb-6 */}
+          {tags && tags.length > 0 && (
+            <div className="flex flex-wrap gap-1"> {/* Tags */}
+              {tags.map((tag) => (
+                <Badge key={tag} variant="secondary" className="font-normal">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </Card>
