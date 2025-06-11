@@ -49,7 +49,7 @@ export function AuthorCard() {
                     您的慷慨解囊是对我最大的鼓励！
                   </AlertDialogDescription>
                 </AlertDialogHeader>
-                <div className="flex flex-col sm:flex-row justify-around items-center gap-6 my-4">
+                <div className="flex flex-row justify-around items-center gap-6 my-4">
                   <div className="flex flex-col items-center">
                     <Image
                       src="https://placehold.co/150x150.png"
