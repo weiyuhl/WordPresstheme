@@ -214,11 +214,8 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       */}
 
       <div className="prose prose-lg dark:prose-invert max-w-none mx-auto text-foreground">
-        {post.content ? (
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
-        ) : (
-          <p>{post.description}</p>
-        )}
+        <p>{post.description}</p>
+        {post.content && <p className="text-xs text-muted-foreground italic">(调试信息：此文章包含额外的 'content' 字段，但当前未渲染以排查问题。)</p>}
       </div>
 
       <div className="mt-12 text-center">
