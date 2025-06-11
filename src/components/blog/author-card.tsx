@@ -20,7 +20,7 @@ export function AuthorCard() {
         <p className="text-muted-foreground mb-6">分享设计与科技生活</p>
         <div className="flex justify-center space-x-3 sm:space-x-4 mb-6">
           <Button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base">
-            打赏作者
+            打赏
           </Button>
           <Button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base">
             订阅
@@ -33,3 +33,4 @@ export function AuthorCard() {
     </div>
   );
 }
+
