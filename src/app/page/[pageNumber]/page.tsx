@@ -74,16 +74,21 @@ export default function PaginatedPage({ params }: PageParams) {
   const prevPage = currentPage - 1;
 
   // 根据页码选择文章数据 (简单示例，真实应用中应从API获取)
-  const postsToShow = currentPage === 1 ? [] : placeholderPostsPageN; // 避免在第一页的动态路由中显示内容，首页由 page.tsx 处理
+  // For this example, we'll show placeholderPostsPageN for any page >= 2
+  // And no posts for page 1 on this dynamic route, as it's handled by src/app/page.tsx for its content
+  const postsToShow = currentPage > 1 ? placeholderPostsPageN : [];
 
   if (currentPage === 1 && params.pageNumber === "1") {
-      // 这是一个简单的处理，实际应用中可能需要更复杂的逻辑或重定向
       return (
         <div className="container mx-auto py-12 px-4 md:px-6 text-center">
             <h1 className="text-3xl font-bold mb-8">这是第 1 页</h1>
             <p className="mb-4 text-lg">内容已在首页展示。</p>
-            <div className="flex justify-center space-x-4 mb-8">
-                 <Link href={`/page/${nextPage}`}>
+            <div className="flex items-center justify-between w-full max-w-sm mx-auto mb-8">
+                <div style={{width: '88px'}} /> {/* Placeholder for Previous button width to balance layout */}
+                <span className="text-lg font-medium text-muted-foreground">
+                  第 {currentPage} 页
+                </span>
+                <Link href={`/page/${nextPage}`}>
                     <Button variant="outline">下一页 ({nextPage})</Button>
                 </Link>
             </div>
@@ -110,7 +115,7 @@ export default function PaginatedPage({ params }: PageParams) {
               description={post.description}
               imageUrl={post.imageUrl}
               imageHint={post.imageHint}
-              slug={`/blog/${post.slug}`} // 假设博客文章详情页的路径结构
+              slug={`/blog/${post.slug}`}
               tags={post.tags}
               publishDate={post.publishDate}
             />
@@ -122,17 +127,25 @@ export default function PaginatedPage({ params }: PageParams) {
         </p>
       )}
       
-      <div className="mt-12 flex justify-center space-x-4">
-        {currentPage > 1 && (
+      <div className="mt-12 flex items-center justify-between w-full max-w-sm mx-auto">
+        {currentPage > 1 ? (
           <Link href={currentPage === 2 ? "/" : `/page/${prevPage}`}>
             <Button variant="outline">上一页{ prevPage > 1 ? ` (${prevPage})` : ''}</Button>
           </Link>
+        ) : (
+          <div style={{width: prevPage > 1 ? '104px' : '88px'}} /> // Placeholder to balance layout, adjust width if button text changes
         )}
-        {/* 简单示例，假设总有下一页，真实应用需要检查是否有更多文章 */}
-        {postsToShow.length > 0 && ( // 仅当当前页有文章时显示下一页按钮
+        
+        <span className="text-lg font-medium text-muted-foreground">
+          第 {currentPage} 页
+        </span>
+
+        {postsToShow.length > 0 ? (
              <Link href={`/page/${nextPage}`}>
                 <Button variant="outline">下一页 ({nextPage})</Button>
             </Link>
+        ) : (
+          <div style={{width: '104px'}} /> // Placeholder for Next button width
         )}
       </div>
        <div className="mt-8 text-center">
