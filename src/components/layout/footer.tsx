@@ -13,9 +13,14 @@ export function Footer() {
   return (
     <footer className="py-6 mt-auto border-t bg-background">
       <div className="container mx-auto px-4 md:px-6 text-center text-muted-foreground text-sm">
-        <div className="space-y-1 md:space-y-0 md:space-x-4 flex flex-col md:flex-row justify-center items-center">
-          <span>陕ICP备16002024号</span>
-          <span>陕公网安备 61032602000128号</span>
+        <div className="flex flex-col items-center space-y-2">
+          <span>
+            © {currentYear ? currentYear : new Date().getFullYear()} 网站名称. All Rights Reserved.
+          </span>
+          <div className="space-y-1 md:space-y-0 md:flex md:space-x-4">
+            <span>陕ICP备16002024号</span>
+            <span>陕公网安备 61032602000128号</span>
+          </div>
         </div>
       </div>
     </footer>
