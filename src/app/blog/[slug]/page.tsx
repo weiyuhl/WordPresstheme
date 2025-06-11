@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { AuthorCard } from '@/components/blog/author-card'; // Import AuthorCard
+import { AuthorCard } from '@/components/blog/author-card';
 
 interface Post {
   slug: string;
@@ -203,9 +203,11 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         <Image
           src={post.imageUrl}
           alt={post.title}
-          layout="fill"
-          objectFit="cover"
+          fill
+          sizes="(max-width: 768px) 100vw, 768px"
+          className="object-cover"
           data-ai-hint={post.imageHint}
+          priority={true} 
         />
       </div>
 
