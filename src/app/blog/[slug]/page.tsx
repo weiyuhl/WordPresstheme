@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { PostBody } from '@/components/blog/post-body';
 
 interface Post {
   slug: string;
@@ -14,16 +15,32 @@ interface Post {
   imageHint: string;
   tags: string[];
   publishDate: string;
-  content?: string; // Optional: for more detailed content later
+  content?: string;
 }
 
-// Combine placeholder posts from homepage and paginated pages
-// In a real app, this would come from a database or CMS
-const placeholderPostsHome = [
+const placeholderPostsHome: Post[] = [
   {
     slug: 'first-post',
     title: '探索自然的奇迹',
     description: '深入探讨未受破坏的景观的壮丽之美及其保护的重要性。',
+    content: `
+      <p>深入探讨未受破坏的景观的壮丽之美及其保护的重要性。</p>
+      <h2 class="text-2xl font-semibold my-4">自然的呼唤</h2>
+      <p>地球上的自然奇观，从巍峨的山脉到深邃的海洋，每一处都蕴藏着独特的生态价值和无与伦比的美学魅力。这些景观不仅仅是视觉上的享受，更是地球生态系统不可或缺的一部分。它们调节气候，净化水源，为无数物种提供栖息地。</p>
+      <h3 class="text-xl font-semibold my-3">为何保护至关重要？</h3>
+      <ul class="list-disc list-inside space-y-1 mb-4">
+        <li><strong>维持生物多样性：</strong> 未受破坏的自然区域是珍稀动植物的家园，保护它们就是保护我们这个星球的生物多样性。</li>
+        <li><strong>科学研究的宝库：</strong> 自然景观为科学家提供了研究地球历史、气候变化和生命演化的天然实验室。</li>
+        <li><strong>精神与文化的寄托：</strong> 许多文化都与特定的自然景观紧密相连，这些地方是人们精神寄托的源泉。</li>
+        <li><strong>可持续发展的基石：</strong> 通过生态旅游等方式，自然景观可以为当地社区带来经济收益，实现人与自然的和谐共处。</li>
+      </ul>
+      <p>面对日益严峻的环境挑战，我们每个人都有责任行动起来，通过减少污染、支持环保组织、倡导绿色生活等方式，共同守护这些自然的馈赠，为子孙后代留下一个更加美丽和健康的世界。</p>
+      <figure class="my-6 text-center">
+        <img src="https://placehold.co/600x350.png" data-ai-hint="forest waterfall" alt="森林中的瀑布" class="rounded-md shadow-md mx-auto" />
+        <figcaption class="text-sm text-muted-foreground mt-2">宁静的森林瀑布，大自然的杰作。</figcaption>
+      </figure>
+      <p>让我们携手努力，确保这些自然的奇迹能够永续存在。</p>
+    `,
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'nature landscape',
     tags: ['自然', '探索'],
@@ -76,7 +93,7 @@ const placeholderPostsHome = [
   },
 ];
 
-const placeholderPostsPageN = [
+const placeholderPostsPageN: Post[] = [
   {
     slug: 'sustainable-architecture',
     title: '可持续建筑的未来',
@@ -193,9 +210,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       </div>
 
       <div className="prose prose-lg dark:prose-invert max-w-none mx-auto text-foreground">
-        <p>{post.description}</p>
-        {/* Placeholder for more content if available */}
-        {post.content && <div dangerouslySetInnerHTML={{ __html: post.content }} />}
+        <PostBody description={post.description} content={post.content} />
       </div>
 
       <div className="mt-12 text-center">
