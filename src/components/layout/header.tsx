@@ -10,6 +10,7 @@ import {
   SheetTrigger,
   SheetClose,
   SheetTitle,
+  SheetPortal, // Ensure SheetPortal is imported
 } from "@/components/ui/sheet";
 
 const mainNavLinks = [
@@ -50,52 +51,55 @@ export function Header() {
                 {isSheetOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </Button>
             </SheetTrigger>
-            <SheetContent
-              side="top"
-              className="h-[calc(100vh-4rem)] flex flex-col p-0 bg-background text-foreground [--tw-enter-translate-y:-50px] [--tw-exit-translate-y:-50px] data-[state=open]:duration-300 data-[state=closed]:duration-200 custom-sheet-no-internal-close"
-              style={{ top: '4rem' }}
-              onCloseAutoFocus={(event) => event.preventDefault()}
-              onOpenAutoFocus={(event) => event.preventDefault()}
-            >
-              <SheetTitle className="sr-only">导航菜单</SheetTitle>
-              
-              <nav className="flex-grow flex flex-col items-center justify-center py-8 space-y-6 overflow-y-auto">
-                {mainNavLinks.map((link) => (
-                  <SheetClose asChild key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-2xl font-medium text-foreground hover:text-primary transition-colors duration-200 ease-in-out"
-                    >
-                      {link.label}
-                    </Link>
-                  </SheetClose>
-                ))}
-              </nav>
-
-              <div className="p-6 border-t">
-                <div className="flex justify-center items-center space-x-3 mb-6 text-sm text-muted-foreground">
-                  {footerNavLinks.map((link, index) => (
-                    <React.Fragment key={link.href}>
-                      <SheetClose asChild>
-                        <Link href={link.href} className="hover:text-primary transition-colors">
-                          {link.label}
-                        </Link>
-                      </SheetClose>
-                      {index < footerNavLinks.length - 1 && <span>|</span>}
-                    </React.Fragment>
-                  ))}
-                </div>
-                <div className="flex justify-center space-x-6">
-                  {socialLinks.map((social) => (
-                    <SheetClose asChild key={social.label}>
-                      <Link href={social.href} aria-label={social.label} className="text-muted-foreground hover:text-primary transition-colors">
-                        {social.icon ? <social.icon className="h-6 w-6" /> : <span className="text-sm">{social.text}</span>}
+            <SheetPortal>
+              {/* SheetOverlay removed to prevent dimming */}
+              <SheetContent
+                side="top"
+                className="h-[calc(100vh-4rem)] flex flex-col p-0 bg-background text-foreground [--tw-enter-translate-y:-50px] [--tw-exit-translate-y:-50px] data-[state=open]:duration-300 data-[state=closed]:duration-200 custom-sheet-no-internal-close"
+                style={{ top: '4rem' }}
+                onCloseAutoFocus={(event) => event.preventDefault()}
+                onOpenAutoFocus={(event) => event.preventDefault()}
+              >
+                <SheetTitle className="sr-only">导航菜单</SheetTitle>
+                
+                <nav className="flex-grow flex flex-col items-center justify-center py-8 space-y-6 overflow-y-auto">
+                  {mainNavLinks.map((link) => (
+                    <SheetClose asChild key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-2xl font-medium text-foreground hover:text-primary transition-colors duration-200 ease-in-out"
+                      >
+                        {link.label}
                       </Link>
                     </SheetClose>
                   ))}
+                </nav>
+
+                <div className="p-6 border-t">
+                  <div className="flex justify-center items-center space-x-3 mb-6 text-sm text-muted-foreground">
+                    {footerNavLinks.map((link, index) => (
+                      <React.Fragment key={link.href}>
+                        <SheetClose asChild>
+                          <Link href={link.href} className="hover:text-primary transition-colors">
+                            {link.label}
+                          </Link>
+                        </SheetClose>
+                        {index < footerNavLinks.length - 1 && <span>|</span>}
+                      </React.Fragment>
+                    ))}
+                  </div>
+                  <div className="flex justify-center space-x-6">
+                    {socialLinks.map((social) => (
+                      <SheetClose asChild key={social.label}>
+                        <Link href={social.href} aria-label={social.label} className="text-muted-foreground hover:text-primary transition-colors">
+                          {social.icon ? <social.icon className="h-6 w-6" /> : <span className="text-sm">{social.text}</span>}
+                        </Link>
+                      </SheetClose>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </SheetContent>
+              </SheetContent>
+            </SheetPortal>
           </Sheet>
         </div>
 
