@@ -41,7 +41,7 @@ export function Header() {
   const [isSheetOpen, setIsSheetOpen] = React.useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
+    <header className="sticky top-0 z-[51] w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
       <div className="container mx-auto h-16 grid grid-cols-3 items-center px-4 md:px-6">
         <div className="justify-self-start">
           <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
@@ -52,9 +52,10 @@ export function Header() {
             </SheetTrigger>
             <SheetContent
               side="top"
-              className="h-[calc(100vh-4rem)] flex flex-col p-0 bg-background text-foreground [--tw-enter-translate-y:-50px] [--tw-exit-translate-y:-50px] data-[state=open]:duration-300 data-[state=closed]:duration-200"
+              className="h-[calc(100vh-4rem)] flex flex-col p-0 bg-background text-foreground [--tw-enter-translate-y:-50px] [--tw-exit-translate-y:-50px] data-[state=open]:duration-300 data-[state=closed]:duration-200 custom-sheet-no-internal-close"
               style={{ top: '4rem' }}
               onCloseAutoFocus={(event) => event.preventDefault()}
+              onOpenAutoFocus={(event) => event.preventDefault()}
             >
               <SheetTitle className="sr-only">导航菜单</SheetTitle>
               

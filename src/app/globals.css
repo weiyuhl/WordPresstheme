@@ -87,3 +87,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom rule to hide the internal close button of a specific SheetContent */
+.custom-sheet-no-internal-close > button[aria-label="Close"] {
+  display: none !important;
+}
