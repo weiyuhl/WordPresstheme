@@ -4,8 +4,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { Header } from '@/components/layout/header';
 
 export const metadata: Metadata = {
-  title: 'Boke Navi',
-  description: 'A minimal and elegant blog website.',
+  title: '博客导航',
+  description: '一个简约而优雅的博客网站。',
 };
 
 export default function RootLayout({
@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="zh-CN" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

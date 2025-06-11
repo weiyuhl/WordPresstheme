@@ -23,7 +23,7 @@ export function BlogPostCard({ title, description, imageUrl, imageHint, slug }: 
   return (
     <Card className="flex flex-col overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
       <CardHeader className="p-0">
-        <Link href={`/blog/${slug}`} aria-label={`Read more about ${title}`}>
+        <Link href={`/blog/${slug}`} aria-label={`阅读更多关于 ${title} 的内容`}>
           <div className="aspect-[16/9] relative w-full overflow-hidden">
             <Image
               src={imageUrl}
@@ -49,7 +49,7 @@ export function BlogPostCard({ title, description, imageUrl, imageHint, slug }: 
       <CardFooter className="p-6 pt-0">
         <Button asChild variant="link" className="p-0 h-auto text-primary hover:text-accent-foreground transition-colors duration-200 ease-in-out">
           <Link href={`/blog/${slug}`}>
-            Read More <ArrowRight className="ml-2 h-4 w-4" />
+            阅读更多 <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
       </CardFooter>
