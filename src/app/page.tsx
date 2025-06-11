@@ -1,5 +1,6 @@
 
 import { BlogPostCard } from '@/components/blog-post-card';
+import { Button } from '@/components/ui/button';
 
 const placeholderPosts = [
   {
@@ -77,6 +78,9 @@ export default function Home() {
             publishDate={post.publishDate}
           />
         ))}
+      </div>
+      <div className="mt-12 flex justify-center">
+        <Button variant="outline">下一页</Button>
       </div>
     </div>
   );
