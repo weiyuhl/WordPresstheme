@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Menu, Search, X, Send, Twitter, Github, Rss, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -48,9 +47,9 @@ export function Header() {
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent 
-              side="top" 
-              className="h-[calc(100vh-4rem)] flex flex-col p-0 bg-background text-foreground"
+            <SheetContent
+              side="top"
+              className="h-[calc(100vh-4rem)] flex flex-col p-0 bg-background text-foreground [--tw-enter-translate-y:-50px] [--tw-exit-translate-y:-50px] data-[state=open]:duration-300 data-[state=closed]:duration-200"
               style={{ top: '4rem' }}
             >
               <SheetHeader className="flex flex-row items-center justify-end p-4 border-b">
