@@ -1,15 +1,107 @@
-import { Menu, Search } from 'lucide-react';
+
+import React from 'react'; // Added React import
+import { Menu, Search, X, Send, Twitter, Github, Rss, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
+import { Separator } from '@/components/ui/separator';
+
+const mainNavLinks = [
+  { href: '/category/php', label: 'PHP' },
+  { href: '/category/swoole', label: 'Swoole' },
+  { href: '/category/wordpress', label: 'WordPress' },
+  { href: '/category/notes', label: '技术笔记' },
+  { href: '/category/resources', label: '实用资源' },
+  { href: '/category/explore', label: '随便看看' },
+];
+
+const footerNavLinks = [
+  { href: '/guestbook', label: '留言簿' },
+  { href: '/benefits', label: '福利专区' },
+  { href: '/sitelog', label: '网站记录' },
+  { href: '/opensource', label: '开源项目' },
+];
+
+const socialLinks = [
+  { href: 'https://weibo.com', label: '微博', icon: null, text: '微博' },
+  { href: 'https://zhihu.com', label: '知乎', icon: null, text: '知乎' },
+  { href: 'https://twitter.com', label: 'Twitter', icon: Twitter },
+  { href: 'https://github.com', label: 'GitHub', icon: Github },
+  { href: '#', label: 'RSS', icon: Rss },
+  { href: 'mailto:info@example.com', label: 'Email', icon: Mail },
+];
 
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
       <div className="container mx-auto h-16 grid grid-cols-3 items-center px-4 md:px-6">
         <div className="justify-self-start">
-          <Button variant="ghost" size="icon" aria-label="打开菜单" className="transition-colors duration-200 ease-in-out hover:text-accent-foreground">
-            <Menu className="h-6 w-6" />
-          </Button>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" aria-label="打开菜单" className="transition-colors duration-200 ease-in-out hover:text-accent-foreground">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="top" className="h-full flex flex-col p-0 bg-background text-foreground">
+              <SheetHeader className="flex flex-row items-center justify-between p-4 border-b">
+                <SheetClose asChild>
+                  <Button variant="ghost" size="icon" aria-label="关闭菜单">
+                    <X className="h-6 w-6" />
+                  </Button>
+                </SheetClose>
+                <Link href="/" className="flex items-center text-xl font-semibold tracking-tight hover:text-primary transition-colors duration-200 ease-in-out">
+                  <Send className="h-6 w-6 mr-2" />
+                  博客导航
+                </Link>
+                <Button variant="ghost" size="icon" aria-label="搜索" className="transition-colors duration-200 ease-in-out hover:text-accent-foreground">
+                  <Search className="h-6 w-6" />
+                </Button>
+              </SheetHeader>
+              
+              <nav className="flex-grow flex flex-col items-center justify-center py-8 space-y-6 overflow-y-auto">
+                {mainNavLinks.map((link) => (
+                  <SheetClose asChild key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-2xl font-medium text-foreground hover:text-primary transition-colors duration-200 ease-in-out"
+                    >
+                      {link.label}
+                    </Link>
+                  </SheetClose>
+                ))}
+              </nav>
+
+              <div className="p-6 border-t">
+                <div className="flex justify-center items-center space-x-3 mb-6 text-sm text-muted-foreground">
+                  {footerNavLinks.map((link, index) => (
+                    <React.Fragment key={link.href}>
+                      <SheetClose asChild>
+                        <Link href={link.href} className="hover:text-primary transition-colors">
+                          {link.label}
+                        </Link>
+                      </SheetClose>
+                      {index < footerNavLinks.length - 1 && <span>|</span>}
+                    </React.Fragment>
+                  ))}
+                </div>
+                <div className="flex justify-center space-x-6">
+                  {socialLinks.map((social) => (
+                    <SheetClose asChild key={social.label}>
+                      <Link href={social.href} aria-label={social.label} className="text-muted-foreground hover:text-primary transition-colors">
+                        {social.icon ? <social.icon className="h-6 w-6" /> : <span className="text-sm">{social.text}</span>}
+                      </Link>
+                    </SheetClose>
+                  ))}
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
         
         <div className="justify-self-center">
@@ -19,7 +111,8 @@ export function Header() {
         </div>
         
         <div className="justify-self-end">
-          <Button variant="ghost" size="icon" aria-label="搜索" className="transition-colors duration-200 ease-in-out hover:text-accent-foreground">
+           {/* Search button is now inside the sheet for mobile, keep one here for larger screens or remove if redundant */}
+           <Button variant="ghost" size="icon" aria-label="搜索" className="transition-colors duration-200 ease-in-out hover:text-accent-foreground md:flex hidden">
             <Search className="h-6 w-6" />
           </Button>
         </div>

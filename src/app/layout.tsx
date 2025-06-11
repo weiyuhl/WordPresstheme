@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { Header } from '@/components/layout/header';
+import React from 'react'; // Added React import for Fragment
 
 export const metadata: Metadata = {
   title: '博客导航',
