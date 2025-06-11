@@ -80,7 +80,7 @@ export default function PaginatedPageContent({
                       className="text-lg font-medium text-muted-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-md px-1 py-1"
                       aria-label={`当前第 ${currentPage} 页，共 ${TOTAL_PAGES} 页, 点击修改页码`}
                     >
-                      {TOTAL_PAGES} / {currentPage}
+                      {TOTAL_PAGES} / {currentPage}页
                     </button>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-4" side="bottom" align="center">
@@ -163,7 +163,7 @@ export default function PaginatedPageContent({
               className="text-lg font-medium text-muted-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-md px-1 py-1"
               aria-label={`当前第 ${currentPage} 页，共 ${TOTAL_PAGES} 页, 点击修改页码`}
             >
-              {TOTAL_PAGES} / {currentPage}
+              {TOTAL_PAGES} / {currentPage}页
             </button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-4" side="bottom" align="center">
