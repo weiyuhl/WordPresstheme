@@ -50,8 +50,8 @@ export function BlogPostCard({ title, description, imageUrl, imageHint, slug, ta
           {description}
         </CardDescription>
       </CardContent>
-      <CardFooter className="p-6 pt-4 flex flex-col items-start w-full text-sm">
-        <div className="flex items-center justify-between w-full mb-2">
+      <CardFooter className="px-6 pt-3 pb-3 flex flex-col items-start w-full text-sm">
+        <div className="flex items-center justify-between w-full mb-1">
           <div className="flex flex-wrap gap-1">
             {tags.map((tag) => (
               <Badge key={tag} variant="secondary" className="font-normal">
