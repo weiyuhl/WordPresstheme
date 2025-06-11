@@ -9,9 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight } from 'lucide-react';
 
 interface BlogPostCardProps {
   title: string;
@@ -60,13 +58,6 @@ export function BlogPostCard({ title, description, imageUrl, imageHint, slug, ta
             ))}
           </div>
           <span className="text-xs text-muted-foreground whitespace-nowrap ml-2">{publishDate}</span>
-        </div>
-        <div className="w-full flex justify-end">
-          <Button asChild variant="link" className="p-0 h-auto text-primary hover:text-accent-foreground transition-colors duration-200 ease-in-out">
-            <Link href={`/blog/${slug}`}>
-              阅读更多 <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
         </div>
       </CardFooter>
     </Card>
