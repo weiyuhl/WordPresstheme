@@ -15,7 +15,7 @@ interface Comment {
   avatarUrl?: string;
   date: Date;
   text: string;
-  email: string; // Added email to comment interface
+  email: string;
 }
 
 const placeholderComments: Comment[] = [
@@ -45,7 +45,6 @@ export function CommentSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Client-side state for ensuring date formatting happens after hydration
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     setIsClient(true);
@@ -57,7 +56,6 @@ export function CommentSection() {
       setError('姓名、邮箱和评论内容均不能为空。');
       return;
     }
-    // Basic email validation (can be more sophisticated)
     if (!/\S+@\S+\.\S+/.test(email)) {
         setError('请输入有效的邮箱地址。');
         return;
@@ -65,11 +63,10 @@ export function CommentSection() {
     setError(null);
     setIsSubmitting(true);
 
-    // Simulate API call / saving comment
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     const newComment: Comment = {
-      id: Date.now().toString(), // Simple ID generation for demo
+      id: Date.now().toString(),
       author: name,
       email: email,
       avatarUrl: `https://placehold.co/40x40.png?text=${name.charAt(0).toUpperCase()}`,
@@ -89,30 +86,38 @@ export function CommentSection() {
       <h2 className="text-3xl font-headline font-semibold mb-8 text-foreground">留下您的评论</h2>
       
       <form onSubmit={handleSubmit} className="mb-10 p-6 bg-card rounded-lg shadow-md space-y-6">
-        <div>
-          <Label htmlFor="comment-name" className="block text-sm font-medium text-foreground mb-1">姓名 <span className="text-destructive">*</span></Label>
-          <Input 
-            id="comment-name" 
-            type="text" 
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="请输入您的称呼" 
-            className="w-full"
-            required 
-          />
+        <div className="md:flex md:items-end md:gap-4">
+          <div className="flex-grow mb-4 md:mb-0">
+            <Label htmlFor="comment-name" className="block text-sm font-medium text-foreground mb-1">姓名 <span className="text-destructive">*</span></Label>
+            <Input 
+              id="comment-name" 
+              type="text" 
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="请输入您的称呼" 
+              className="w-full"
+              required 
+            />
+          </div>
+          <div className="flex-grow mb-4 md:mb-0">
+            <Label htmlFor="comment-email" className="block text-sm font-medium text-foreground mb-1">邮箱 <span className="text-destructive">*</span></Label>
+            <Input 
+              id="comment-email" 
+              type="email" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="请输入您的邮箱" 
+              className="w-full"
+              required
+            />
+          </div>
+          <div className="w-full md:w-auto flex-shrink-0">
+            <Button type="submit" disabled={isSubmitting} size="lg" className="w-full">
+              {isSubmitting ? '正在提交...' : '发表评论'}
+            </Button>
+          </div>
         </div>
-        <div>
-          <Label htmlFor="comment-email" className="block text-sm font-medium text-foreground mb-1">邮箱 <span className="text-destructive">*</span></Label>
-          <Input 
-            id="comment-email" 
-            type="email" 
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="请输入您的邮箱" 
-            className="w-full"
-            required
-          />
-        </div>
+        
         <div>
           <Label htmlFor="comment-text" className="block text-sm font-medium text-foreground mb-1">评论内容 <span className="text-destructive">*</span></Label>
           <Textarea 
@@ -126,9 +131,6 @@ export function CommentSection() {
           />
         </div>
         {error && <p className="text-sm text-destructive">{error}</p>}
-        <Button type="submit" disabled={isSubmitting} size="lg" className="w-full sm:w-auto">
-          {isSubmitting ? '正在提交...' : '发表评论'}
-        </Button>
       </form>
 
       <h3 className="text-2xl font-headline font-semibold mb-6 text-foreground">
