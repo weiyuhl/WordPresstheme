@@ -1,7 +1,6 @@
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { HeartHandshake, Leaf } from 'lucide-react';
 
 export function AuthorCard() {
   return (
@@ -21,11 +20,9 @@ export function AuthorCard() {
         <p className="text-muted-foreground mb-6">分享设计与科技生活</p>
         <div className="flex justify-center space-x-3 sm:space-x-4 mb-6">
           <Button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base">
-            <HeartHandshake className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
             打赏作者
           </Button>
           <Button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base">
-            <Leaf className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
             订阅
           </Button>
         </div>
