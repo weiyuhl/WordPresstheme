@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -9,6 +10,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { ArrowRight } from 'lucide-react';
 
 interface BlogPostCardProps {
@@ -17,9 +19,11 @@ interface BlogPostCardProps {
   imageUrl: string;
   imageHint: string;
   slug: string;
+  tags: string[];
+  publishDate: string;
 }
 
-export function BlogPostCard({ title, description, imageUrl, imageHint, slug }: BlogPostCardProps) {
+export function BlogPostCard({ title, description, imageUrl, imageHint, slug, tags, publishDate }: BlogPostCardProps) {
   return (
     <Card className="flex flex-col overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
       <CardHeader className="p-0">
@@ -46,12 +50,24 @@ export function BlogPostCard({ title, description, imageUrl, imageHint, slug }: 
           {description}
         </CardDescription>
       </CardContent>
-      <CardFooter className="p-6 pt-0">
-        <Button asChild variant="link" className="p-0 h-auto text-primary hover:text-accent-foreground transition-colors duration-200 ease-in-out">
-          <Link href={`/blog/${slug}`}>
-            阅读更多 <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
-        </Button>
+      <CardFooter className="p-6 pt-4 flex flex-col items-start w-full text-sm">
+        <div className="flex items-center justify-between w-full mb-2">
+          <div className="flex flex-wrap gap-1">
+            {tags.map((tag) => (
+              <Badge key={tag} variant="secondary" className="font-normal">
+                {tag}
+              </Badge>
+            ))}
+          </div>
+          <span className="text-xs text-muted-foreground whitespace-nowrap ml-2">{publishDate}</span>
+        </div>
+        <div className="w-full flex justify-end">
+          <Button asChild variant="link" className="p-0 h-auto text-primary hover:text-accent-foreground transition-colors duration-200 ease-in-out">
+            <Link href={`/blog/${slug}`}>
+              阅读更多 <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
       </CardFooter>
     </Card>
   );

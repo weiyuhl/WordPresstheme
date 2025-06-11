@@ -1,3 +1,4 @@
+
 import { BlogPostCard } from '@/components/blog-post-card';
 
 const placeholderPosts = [
@@ -7,6 +8,8 @@ const placeholderPosts = [
     description: '深入探讨未受破坏的景观的壮丽之美及其保护的重要性。',
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'nature landscape',
+    tags: ['自然', '探索'],
+    publishDate: '2024-07-15',
   },
   {
     slug: 'tech-innovations-2024',
@@ -14,6 +17,8 @@ const placeholderPosts = [
     description: '发现塑造我们未来的突破性技术，从人工智能的进步到可持续技术。',
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'technology abstract',
+    tags: ['科技', '创新'],
+    publishDate: '2024-07-18',
   },
   {
     slug: 'minimalist-living-guide',
@@ -21,6 +26,8 @@ const placeholderPosts = [
     description: '通过我们的极简生活综合指南，拥抱简约，在更少的事物中寻找快乐。',
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'minimalist interior',
+    tags: ['生活方式', '简约'],
+    publishDate: '2024-07-20',
   },
    {
     slug: 'culinary-adventures',
@@ -28,6 +35,8 @@ const placeholderPosts = [
     description: '加入我们的美食之旅，探索来自全球的异国风味和传统美食。',
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'food gourmet',
+    tags: ['美食', '旅行'],
+    publishDate: '2024-07-22',
   },
   {
     slug: 'urban-photography-tips',
@@ -35,6 +44,8 @@ const placeholderPosts = [
     description: '利用这些专家技巧，捕捉城市生活的活力精髓，拍摄令人惊叹的城市照片。',
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'city skyline',
+    tags: ['摄影', '城市'],
+    publishDate: '2024-07-24',
   },
   {
     slug: 'mindfulness-daily-life',
@@ -42,6 +53,8 @@ const placeholderPosts = [
     description: '学习实用技巧，将正念带入您的日常生活，享受更平静、更专注的生活。',
     imageUrl: 'https://placehold.co/600x338.png',
     imageHint: 'zen meditation',
+    tags: ['健康', '正念'],
+    publishDate: '2024-07-26',
   },
 ];
 
@@ -60,6 +73,8 @@ export default function Home() {
             imageUrl={post.imageUrl}
             imageHint={post.imageHint}
             slug={post.slug}
+            tags={post.tags}
+            publishDate={post.publishDate}
           />
         ))}
       </div>
