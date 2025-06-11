@@ -1,8 +1,10 @@
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { Header } from '@/components/layout/header';
-import React from 'react'; // Added React import for Fragment
+import { Footer } from '@/components/layout/footer'; // Import Footer
+import React from 'react';
 
 export const metadata: Metadata = {
   title: '网站名称',
@@ -27,6 +29,7 @@ export default function RootLayout({
         <main className="flex-grow">
           {children}
         </main>
+        <Footer /> {/* Add Footer here */}
         <Toaster />
       </body>
     </html>
