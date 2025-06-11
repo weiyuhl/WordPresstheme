@@ -211,28 +211,22 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     notFound();
   }
 
+  const currentDate = new Date().toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
   return (
     <article className="container mx-auto py-12 px-4 md:px-6 max-w-3xl">
       <header className="mb-8">
         <h1 className="text-4xl font-headline font-bold mb-3 text-center">{post.title}</h1>
         <div className="text-center text-muted-foreground text-sm mb-6">
-          <span>发布于 {post.publishDate}</span>
-          {post.categories && post.categories.length > 0 && (
-            <>
-              <span className="mx-2">|</span>
-              <span>
-                分类：
-                {post.categories.map((category, index) => (
-                  <React.Fragment key={category}>
-                    <Link href={`/category/${category.toLowerCase()}`} className="hover:text-primary transition-colors">
-                      {category}
-                    </Link>
-                    {index < post.categories!.length - 1 && ', '}
-                  </React.Fragment>
-                ))}
-              </span>
-            </>
-          )}
+          <span>作者：{post.authorName || '用户名称'}</span>
+          <span className="mx-2">•</span>
+          <span>分类：所有文章</span>
+          <span className="mx-2">•</span>
+          <span>日期：{currentDate}</span>
         </div>
       </header>
 
