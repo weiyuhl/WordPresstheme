@@ -119,10 +119,10 @@ export default function PaginatedPageContent({
 
 
   return (
-    <div className="container mx-auto py-8 px-4 md:px-6">
+    <div className="container mx-auto py-8 px-4 md:px-6"> {/* This container is fine, the grid inside is what matters for card listing */}
       
       {displayPosts.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-8"> {/* Changed md:grid-cols-2 to grid-cols-1 */}
           {displayPosts.map((post) => (
             <BlogPostCard
               key={post.slug}

@@ -66,7 +66,7 @@ export default function Home() {
     <div className="container mx-auto py-8 px-4 md:px-6">
       <div className="lg:flex lg:gap-8">
         <main className="lg:w-2/3">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8">
             {placeholderPosts.map((post) => (
               <BlogPostCard
                 key={post.slug}
