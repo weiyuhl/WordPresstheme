@@ -30,10 +30,10 @@ export function BlogPostCard({ title, description, imageUrl, imageHint, slug, ta
             <Image
               src={imageUrl}
               alt={title}
-              layout="fill"
-              objectFit="cover"
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               data-ai-hint={imageHint}
-              className="transition-transform duration-300 ease-in-out hover:scale-105"
+              className="object-cover transition-transform duration-300 ease-in-out hover:scale-105"
             />
           </div>
         </Link>
