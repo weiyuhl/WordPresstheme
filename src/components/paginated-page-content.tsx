@@ -64,9 +64,6 @@ export default function PaginatedPageContent({
     }
   };
 
-  // Note: The top-level invalid page (isNaN(currentPage) || currentPage < 1) is handled by the server component.
-  // This component will receive a valid currentPage >= 1.
-
   if (currentPage === 1 && pageNumberString === "1") {
       return (
         <div className="container mx-auto py-12 px-4 md:px-6 text-center">
@@ -118,7 +115,6 @@ export default function PaginatedPageContent({
       );
   }
 
-  // Use initialPosts directly, which are already filtered by the server component for paginated pages
   const displayPosts = (currentPage > 1 && currentPage <= TOTAL_PAGES) ? initialPosts : [];
 
 
@@ -134,7 +130,7 @@ export default function PaginatedPageContent({
               description={post.description}
               imageUrl={post.imageUrl}
               imageHint={post.imageHint}
-              slug={`/blog/${post.slug}`} 
+              slug={post.slug} 
               tags={post.tags}
               publishDate={post.publishDate}
             />
@@ -152,8 +148,6 @@ export default function PaginatedPageContent({
             <Button variant="outline">上一页</Button>
           </Link>
         ) : (
-          // Placeholder for "Previous" button if on page 1 (though this specific path is for page > 1)
-          // Or if current page logic means it's not the actual page 1 (e.g. redirected from /)
           <div style={{width: '88px'}} /> 
         )}
         
