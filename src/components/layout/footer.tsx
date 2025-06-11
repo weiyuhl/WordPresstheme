@@ -42,10 +42,11 @@ export function Footer() {
 
           <div className="flex items-center space-x-1.5">
             <span className="inline-block w-2.5 h-2.5 bg-green-500 rounded-full" aria-hidden="true"></span>
-            <span>所有业务正常。</span>
+            <span>所有业务正常</span>
           </div>
         </div>
       </div>
     </footer>
   );
 }
+
