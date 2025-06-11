@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { Menu, Search, X, Rss, Mail, Twitter } from 'lucide-react'; // Added Twitter
+import { Menu, Search, X, Rss, Mail, Twitter as TwitterIconLucide } from 'lucide-react'; // Renamed Twitter to avoid conflict
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
@@ -14,8 +14,8 @@ import {
 } from "@/components/ui/sheet";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
+import { Input } from '@/components/ui/input';
 
-// Manually define SVG components for Weibo and Zhihu if lucide-react doesn't have them
 const WeiboIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
     <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.28-6.812c-.23-.49-.71-.83-1.29-.83h-1.5c-.51 0-.96.3-1.18.75l-.66 1.375c-.15.31-.47.51-.83.51h-1.64c-.36 0-.68-.2-.83-.51l-.66-1.375c-.22-.45-.67-.75-1.18-.75h-1.5c-.58 0-1.06.34-1.29.83-.23.49-.15 1.08.2 1.48l2.75 3.06c.24.27.59.43.96.43h3.2c.37 0 .72-.16.96-.43l2.75-3.06c.35-.4.43-.99.2-1.48zM15.5 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm-7 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
@@ -54,23 +54,24 @@ const footerNavLinks = [
 const socialLinks = [
   { href: 'https://weibo.com', label: '微博', icon: WeiboIcon, text: '微博' },
   { href: 'https://zhihu.com', label: '知乎', icon: ZhihuIcon, text: '知乎' },
-  { href: 'https://twitter.com', label: 'Twitter', icon: Twitter },
+  { href: 'https://twitter.com', label: 'Twitter', icon: TwitterIconLucide },
   { href: 'https://github.com', label: 'GitHub', icon: GithubIcon },
   { href: '#', label: 'RSS', icon: Rss },
   { href: 'mailto:info@example.com', label: 'Email', icon: Mail },
 ];
 
 export function Header() {
-  const [isSheetOpen, setIsSheetOpen] = React.useState(false);
+  const [isMenuSheetOpen, setIsMenuSheetOpen] = React.useState(false);
+  const [isSearchSheetOpen, setIsSearchSheetOpen] = React.useState(false);
 
   return (
     <header className="sticky top-0 z-[51] w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
       <div className="container mx-auto h-16 grid grid-cols-3 items-center px-4 md:px-6">
         <div className="justify-self-start">
-          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+          <Sheet open={isMenuSheetOpen} onOpenChange={setIsMenuSheetOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label={isSheetOpen ? "关闭菜单" : "打开菜单"} className="transition-colors duration-200 ease-in-out hover:text-accent-foreground">
-                {isSheetOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              <Button variant="ghost" size="icon" aria-label={isMenuSheetOpen ? "关闭菜单" : "打开菜单"} className="transition-colors duration-200 ease-in-out hover:text-accent-foreground">
+                {isMenuSheetOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </Button>
             </SheetTrigger>
             <SheetPortal>
@@ -135,11 +136,39 @@ export function Header() {
         </div>
 
         <div className="justify-self-end">
-           <Button variant="ghost" size="icon" aria-label="搜索" className="transition-colors duration-200 ease-in-out hover:text-accent-foreground md:flex hidden">
-            <Search className="h-6 w-6" />
-          </Button>
+           <Sheet open={isSearchSheetOpen} onOpenChange={setIsSearchSheetOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" aria-label={isSearchSheetOpen ? "关闭搜索" : "打开搜索"} className="transition-colors duration-200 ease-in-out hover:text-accent-foreground">
+                {isSearchSheetOpen ? <X className="h-6 w-6" /> : <Search className="h-6 w-6" />}
+              </Button>
+            </SheetTrigger>
+            <SheetPortal>
+              <SheetPrimitive.Content
+                side="top"
+                className={cn(
+                  "fixed z-50 gap-4 bg-background shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-200 data-[state=open]:duration-300",
+                  "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
+                  "flex flex-col p-6 text-foreground [--tw-enter-translate-y:-50px] [--tw-exit-translate-y:-50px] custom-sheet-no-internal-close"
+                )}
+                style={{ top: '4rem', height: '40vh' }}
+                onCloseAutoFocus={(event) => event.preventDefault()}
+                onOpenAutoFocus={(event) => event.preventDefault()}
+              >
+                <SheetTitle className="sr-only">搜索内容</SheetTitle>
+                <div className="flex flex-col space-y-4 h-full items-center justify-center">
+                  <Input 
+                    type="search" 
+                    placeholder="请输入搜索关键词..." 
+                    className="w-full max-w-md text-base"
+                  />
+                  <p className="text-sm text-muted-foreground">输入关键词后按 Enter 键搜索</p>
+                </div>
+              </SheetPrimitive.Content>
+            </SheetPortal>
+          </Sheet>
         </div>
       </div>
     </header>
   );
 }
+
