@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { AuthorCard } from '@/components/blog/author-card';
 import { CommentSection } from '@/components/blog/comment-section';
-import React from 'react'; // Added React import
+import React from 'react';
 
 interface Post {
   slug: string;
@@ -18,6 +18,7 @@ interface Post {
   tags: string[];
   categories?: string[];
   publishDate: string;
+  authorName?: string;
   content?: string;
 }
 
@@ -26,6 +27,7 @@ const placeholderPostsHome: Post[] = [
     slug: 'first-post',
     title: '探索自然的奇迹',
     description: '深入探讨未受破坏的景观的壮丽之美及其保护的重要性。',
+    authorName: '用户名称',
     content: `
       <p>深入探讨未受破坏的景观的壮丽之美及其保护的重要性。</p>
       <h2 class="text-2xl font-semibold my-4">自然的呼唤</h2>
@@ -59,6 +61,7 @@ const placeholderPostsHome: Post[] = [
     tags: ['科技', '创新'],
     categories: ['前沿科技', '技术趋势'],
     publishDate: '2024-07-18',
+    authorName: '用户名称',
   },
   {
     slug: 'minimalist-living-guide',
@@ -69,6 +72,7 @@ const placeholderPostsHome: Post[] = [
     tags: ['生活方式', '简约'],
     categories: ['生活哲学', '家居整理'],
     publishDate: '2024-07-20',
+    authorName: '用户名称',
   },
    {
     slug: 'culinary-adventures',
@@ -79,6 +83,7 @@ const placeholderPostsHome: Post[] = [
     tags: ['美食', '旅行'],
     categories: ['环球美食', '饮食文化'],
     publishDate: '2024-07-22',
+    authorName: '用户名称',
   },
   {
     slug: 'urban-photography-tips',
@@ -89,6 +94,7 @@ const placeholderPostsHome: Post[] = [
     tags: ['摄影', '城市'],
     categories: ['摄影技巧', '城市探索'],
     publishDate: '2024-07-24',
+    authorName: '用户名称',
   },
   {
     slug: 'mindfulness-daily-life',
@@ -99,6 +105,7 @@ const placeholderPostsHome: Post[] = [
     tags: ['健康', '正念'],
     categories: ['身心健康', '生活方式'],
     publishDate: '2024-07-26',
+    authorName: '用户名称',
   },
 ];
 
@@ -112,6 +119,7 @@ const placeholderPostsPageN: Post[] = [
     tags: ['建筑', '可持续'],
     categories: ['绿色建筑', '城市发展'],
     publishDate: '2024-07-28',
+    authorName: '用户名称',
   },
   {
     slug: 'ai-in-healthcare',
@@ -122,6 +130,7 @@ const placeholderPostsPageN: Post[] = [
     tags: ['AI', '医疗'],
     categories: ['智慧医疗', '人工智能'],
     publishDate: '2024-07-30',
+    authorName: '用户名称',
   },
   {
     slug: 'deep-sea-exploration',
@@ -132,6 +141,7 @@ const placeholderPostsPageN: Post[] = [
     tags: ['海洋', '探索'],
     categories: ['海洋科学', '探索发现'],
     publishDate: '2024-08-01',
+    authorName: '用户名称',
   },
    {
     slug: 'ancient-civilizations-lost-secrets',
@@ -142,6 +152,7 @@ const placeholderPostsPageN: Post[] = [
     tags: ['历史', '考古'],
     categories: ['历史揭秘', '考古发现'],
     publishDate: '2024-08-03',
+    authorName: '用户名称',
   },
   {
     slug: 'the-art-of-storytelling',
@@ -152,6 +163,7 @@ const placeholderPostsPageN: Post[] = [
     tags: ['创意', '写作'],
     categories: ['写作技巧', '创意表达'],
     publishDate: '2024-08-05',
+    authorName: '用户名称',
   },
   {
     slug: 'cosmic-wonders-beyond-our-galaxy',
@@ -162,6 +174,7 @@ const placeholderPostsPageN: Post[] = [
     tags: ['天文', '宇宙'],
     categories: ['宇宙探索', '天文学'],
     publishDate: '2024-08-07',
+    authorName: '用户名称',
   },
 ];
 

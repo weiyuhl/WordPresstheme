@@ -16,9 +16,10 @@ interface BlogPostCardProps {
   slug: string;
   tags: string[];
   publishDate: string;
+  authorName?: string;
 }
 
-export function BlogPostCard({ title, description, imageUrl, imageHint, slug, tags, publishDate }: BlogPostCardProps) {
+export function BlogPostCard({ title, description, imageUrl, imageHint, slug, tags, publishDate, authorName }: BlogPostCardProps) {
   return (
     <Card className="flex flex-col md:flex-row overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
       {/* Image Container */}
@@ -30,7 +31,7 @@ export function BlogPostCard({ title, description, imageUrl, imageHint, slug, ta
             fill
             sizes="(max-width: 767px) 100vw, (min-width: 768px) 30vw"
             data-ai-hint={imageHint}
-            className="object-cover" // Relies on Card's overflow-hidden for rounding
+            className="object-cover" 
           />
         </Link>
       </div>
@@ -45,15 +46,26 @@ export function BlogPostCard({ title, description, imageUrl, imageHint, slug, ta
         <CardDescription className="text-muted-foreground line-clamp-3 md:line-clamp-4 lg:line-clamp-5 mb-4 flex-grow">
           {description}
         </CardDescription>
-        <div className="mt-auto flex items-center justify-between w-full text-sm">
-          <div className="flex flex-wrap gap-1">
+        
+        <div className="mt-auto pt-4"> {/* Footer section for tags, author, date */}
+          <div className="flex flex-wrap gap-1 mb-2"> {/* Tags */}
             {tags.map((tag) => (
               <Badge key={tag} variant="secondary" className="font-normal">
                 {tag}
               </Badge>
             ))}
           </div>
-          <span className="text-xs text-muted-foreground whitespace-nowrap ml-2">{publishDate}</span>
+          <div className="text-xs text-muted-foreground flex items-center"> {/* Author and Date container */}
+            {authorName && (
+                <span className="font-medium text-foreground/80">{authorName}</span>
+            )}
+            {authorName && publishDate && (
+                <span className="mx-1.5">&bull;</span>
+            )}
+            {publishDate && (
+                <span>{publishDate}</span>
+            )}
+          </div>
         </div>
       </div>
     </Card>

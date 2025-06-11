@@ -14,6 +14,7 @@ const placeholderPostsPageN = [
     imageHint: 'green building',
     tags: ['建筑', '可持续'],
     publishDate: '2024-07-28',
+    authorName: '用户名称',
   },
   {
     slug: 'ai-in-healthcare',
@@ -23,6 +24,7 @@ const placeholderPostsPageN = [
     imageHint: 'medical technology',
     tags: ['AI', '医疗'],
     publishDate: '2024-07-30',
+    authorName: '用户名称',
   },
   {
     slug: 'deep-sea-exploration',
@@ -32,6 +34,7 @@ const placeholderPostsPageN = [
     imageHint: 'ocean underwater',
     tags: ['海洋', '探索'],
     publishDate: '2024-08-01',
+    authorName: '用户名称',
   },
    {
     slug: 'ancient-civilizations-lost-secrets',
@@ -41,6 +44,7 @@ const placeholderPostsPageN = [
     imageHint: 'ancient ruins',
     tags: ['历史', '考古'],
     publishDate: '2024-08-03',
+    authorName: '用户名称',
   },
   {
     slug: 'the-art-of-storytelling',
@@ -50,6 +54,7 @@ const placeholderPostsPageN = [
     imageHint: 'writing book',
     tags: ['创意', '写作'],
     publishDate: '2024-08-05',
+    authorName: '用户名称',
   },
   {
     slug: 'cosmic-wonders-beyond-our-galaxy',
@@ -59,6 +64,7 @@ const placeholderPostsPageN = [
     imageHint: 'galaxy stars',
     tags: ['天文', '宇宙'],
     publishDate: '2024-08-07',
+    authorName: '用户名称',
   },
 ];
 

@@ -13,6 +13,7 @@ const placeholderPosts = [
     imageHint: 'nature landscape',
     tags: ['自然', '探索'],
     publishDate: '2024-07-15',
+    authorName: '用户名称',
   },
   {
     slug: 'tech-innovations-2024',
@@ -22,6 +23,7 @@ const placeholderPosts = [
     imageHint: 'technology abstract',
     tags: ['科技', '创新'],
     publishDate: '2024-07-18',
+    authorName: '用户名称',
   },
   {
     slug: 'minimalist-living-guide',
@@ -31,6 +33,7 @@ const placeholderPosts = [
     imageHint: 'minimalist interior',
     tags: ['生活方式', '简约'],
     publishDate: '2024-07-20',
+    authorName: '用户名称',
   },
    {
     slug: 'culinary-adventures',
@@ -40,6 +43,7 @@ const placeholderPosts = [
     imageHint: 'food gourmet',
     tags: ['美食', '旅行'],
     publishDate: '2024-07-22',
+    authorName: '用户名称',
   },
   {
     slug: 'urban-photography-tips',
@@ -49,6 +53,7 @@ const placeholderPosts = [
     imageHint: 'city skyline',
     tags: ['摄影', '城市'],
     publishDate: '2024-07-24',
+    authorName: '用户名称',
   },
   {
     slug: 'mindfulness-daily-life',
@@ -58,6 +63,7 @@ const placeholderPosts = [
     imageHint: 'zen meditation',
     tags: ['健康', '正念'],
     publishDate: '2024-07-26',
+    authorName: '用户名称',
   },
 ];
 
@@ -77,6 +83,7 @@ export default function Home() {
                 slug={post.slug}
                 tags={post.tags}
                 publishDate={post.publishDate}
+                authorName={post.authorName}
               />
             ))}
           </div>

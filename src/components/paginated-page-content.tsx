@@ -17,6 +17,7 @@ interface Post {
   imageHint: string;
   tags: string[];
   publishDate: string;
+  authorName?: string;
 }
 
 interface PaginatedPageContentProps {
@@ -119,10 +120,10 @@ export default function PaginatedPageContent({
 
 
   return (
-    <div className="container mx-auto py-8 px-4 md:px-6"> {/* This container is fine, the grid inside is what matters for card listing */}
+    <div className="container mx-auto py-8 px-4 md:px-6"> 
       
       {displayPosts.length > 0 ? (
-        <div className="grid grid-cols-1 gap-8"> {/* Changed md:grid-cols-2 to grid-cols-1 */}
+        <div className="grid grid-cols-1 gap-8"> 
           {displayPosts.map((post) => (
             <BlogPostCard
               key={post.slug}
@@ -133,6 +134,7 @@ export default function PaginatedPageContent({
               slug={post.slug} 
               tags={post.tags}
               publishDate={post.publishDate}
+              authorName={post.authorName}
             />
           ))}
         </div>
