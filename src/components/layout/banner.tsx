@@ -14,12 +14,13 @@ export function Banner() {
       />
       <div className="relative z-10 p-4 md:p-8">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-headline font-bold text-foreground mb-4">
-          探索新视界
+          banner
         </h2>
         <p className="text-md md:text-lg text-foreground/90 mb-6 max-w-2xl mx-auto">
-          发现最新文章，深入了解前沿科技与创意生活。
+          描述
         </p>
       </div>
     </section>
   );
 }
+
