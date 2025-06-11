@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { Menu, Search, X, Rss, Mail, Github as GithubLucideIcon } from 'lucide-react';
+import { Menu, Search, X, Rss, Mail, Twitter } from 'lucide-react'; // Added Twitter
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
@@ -53,7 +53,7 @@ const footerNavLinks = [
 const socialLinks = [
   { href: 'https://weibo.com', label: '微博', icon: WeiboIcon, text: '微博' },
   { href: 'https://zhihu.com', label: '知乎', icon: ZhihuIcon, text: '知乎' },
-  { href: 'https://twitter.com', label: 'Twitter', icon: GithubLucideIcon }, // Corrected to use GithubLucideIcon as Twitter icon from lucide-react
+  { href: 'https://twitter.com', label: 'Twitter', icon: Twitter }, // Corrected to use Twitter icon from lucide-react
   { href: 'https://github.com', label: 'GitHub', icon: GithubIcon },
   { href: '#', label: 'RSS', icon: Rss },
   { href: 'mailto:info@example.com', label: 'Email', icon: Mail },
@@ -68,21 +68,22 @@ export function Header() {
       <div className="container mx-auto h-16 grid grid-cols-3 items-center px-4 md:px-6">
         <div className="justify-self-start">
           <Sheet open={isMenuSheetOpen} onOpenChange={setIsMenuSheetOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label={isMenuSheetOpen ? "关闭菜单" : "打开菜单"} className="transition-colors duration-200 ease-in-out hover:text-accent-foreground">
-                {isMenuSheetOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </Button>
-            </SheetTrigger>
+            {!isSearchSheetOpen && (
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" aria-label={isMenuSheetOpen ? "关闭菜单" : "打开菜单"} className="transition-colors duration-200 ease-in-out hover:text-accent-foreground">
+                  {isMenuSheetOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                </Button>
+              </SheetTrigger>
+            )}
             <SheetPortal>
               <SheetPrimitive.Content
                 side="top"
                 className={cn(
-                  "fixed z-50 gap-4 bg-background shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-200 data-[state=open]:duration-300", 
-                  "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top", 
-                  "flex flex-col p-0 text-foreground data-[state=closed]:[--tw-exit-translate-y:-50px] data-[state=open]:[--tw-enter-translate-y:-50px] custom-sheet-no-internal-close" 
+                  "fixed z-50 gap-4 bg-background shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-200 data-[state=open]:duration-300",
+                  "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
+                  "flex flex-col p-0 text-foreground data-[state=closed]:[--tw-exit-translate-y:-50px] data-[state=open]:[--tw-enter-translate-y:-50px] custom-sheet-no-internal-close"
                 )}
                 style={{ top: '4rem', height: '60vh' }}
-              
               >
                 <SheetTitle className="sr-only">导航菜单</SheetTitle>
                 
@@ -135,11 +136,13 @@ export function Header() {
 
         <div className="justify-self-end">
            <Sheet open={isSearchSheetOpen} onOpenChange={setIsSearchSheetOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label={isSearchSheetOpen ? "关闭搜索" : "打开搜索"} className="transition-colors duration-200 ease-in-out hover:text-accent-foreground">
-                {isSearchSheetOpen ? <X className="h-6 w-6" /> : <Search className="h-6 w-6" />}
-              </Button>
-            </SheetTrigger>
+            {!isMenuSheetOpen && (
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" aria-label={isSearchSheetOpen ? "关闭搜索" : "打开搜索"} className="transition-colors duration-200 ease-in-out hover:text-accent-foreground">
+                  {isSearchSheetOpen ? <X className="h-6 w-6" /> : <Search className="h-6 w-6" />}
+                </Button>
+              </SheetTrigger>
+            )}
             <SheetPortal>
               <SheetPrimitive.Content
                 side="top"
@@ -149,7 +152,6 @@ export function Header() {
                   "flex flex-col p-6 text-foreground data-[state=closed]:[--tw-exit-translate-y:-50px] data-[state=open]:[--tw-enter-translate-y:-50px] custom-sheet-no-internal-close"
                 )}
                 style={{ top: '4rem', height: '40vh' }}
-               
               >
                 <SheetTitle className="sr-only">搜索内容</SheetTitle>
                 <div className="flex flex-col space-y-4 h-full items-center justify-center">
@@ -168,4 +170,3 @@ export function Header() {
     </header>
   );
 }
-
