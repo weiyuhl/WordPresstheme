@@ -63,9 +63,6 @@ const placeholderPosts = [
 export default function Home() {
   return (
     <div className="container mx-auto py-8 px-4 md:px-6">
-      <h2 className="text-3xl font-headline font-semibold mb-8 text-center text-foreground">
-        最新文章
-      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {placeholderPosts.map((post) => (
           <BlogPostCard
