@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { Menu, Search, X, Rss, Mail, Twitter as TwitterIconLucide } from 'lucide-react'; // Renamed Twitter to avoid conflict
+import { Menu, Search, X, Rss, Mail, Github, Twitter as TwitterIconLucide } from 'lucide-react'; // Renamed Twitter to avoid conflict
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
@@ -68,7 +68,12 @@ export function Header() {
     <header className="sticky top-0 z-[51] w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
       <div className="container mx-auto h-16 grid grid-cols-3 items-center px-4 md:px-6">
         <div className="justify-self-start">
-          <Sheet open={isMenuSheetOpen} onOpenChange={setIsMenuSheetOpen}>
+          <Sheet open={isMenuSheetOpen} onOpenChange={(open) => {
+            if (open) {
+              setIsSearchSheetOpen(false);
+            }
+            setIsMenuSheetOpen(open);
+          }}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" aria-label={isMenuSheetOpen ? "关闭菜单" : "打开菜单"} className="transition-colors duration-200 ease-in-out hover:text-accent-foreground">
                 {isMenuSheetOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -118,7 +123,7 @@ export function Header() {
                     {socialLinks.map((social) => (
                       <SheetClose asChild key={social.label}>
                         <Link href={social.href} aria-label={social.label} className="text-muted-foreground hover:text-primary transition-colors">
-                          {social.icon ? React.createElement(social.icon) : <span className="text-sm">{social.text}</span>}
+                           {social.icon ? React.createElement(social.icon) : <span className="text-sm">{social.text}</span>}
                         </Link>
                       </SheetClose>
                     ))}
@@ -136,7 +141,12 @@ export function Header() {
         </div>
 
         <div className="justify-self-end">
-           <Sheet open={isSearchSheetOpen} onOpenChange={setIsSearchSheetOpen}>
+           <Sheet open={isSearchSheetOpen} onOpenChange={(open) => {
+            if (open) {
+              setIsMenuSheetOpen(false);
+            }
+            setIsSearchSheetOpen(open);
+           }}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" aria-label={isSearchSheetOpen ? "关闭搜索" : "打开搜索"} className="transition-colors duration-200 ease-in-out hover:text-accent-foreground">
                 {isSearchSheetOpen ? <X className="h-6 w-6" /> : <Search className="h-6 w-6" />}
