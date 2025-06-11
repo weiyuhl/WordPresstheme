@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { AuthorCard } from '@/components/blog/author-card'; // Import AuthorCard
 
 interface Post {
   slug: string;
@@ -221,6 +222,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           <Button variant="outline">返回首页</Button>
         </Link>
       </div>
+      <AuthorCard />
     </article>
   );
 }
