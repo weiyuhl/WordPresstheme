@@ -31,7 +31,7 @@ export function Footer() {
             <span>陕ICP备16002024号</span>
             <span>陕公网安备 61032602000128号</span>
           </div>
-
+          
           <div className="flex flex-wrap justify-center space-x-4">
             {footerLinks.map((link, index) => (
               <Link key={index} href={link.href} className="hover:text-primary transition-colors">
@@ -39,7 +39,7 @@ export function Footer() {
               </Link>
             ))}
           </div>
-          
+
           <div className="flex items-center space-x-1.5">
             <span className="inline-block w-2.5 h-2.5 bg-green-500 rounded-full" aria-hidden="true"></span>
             <span>所有业务正常。</span>
