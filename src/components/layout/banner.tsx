@@ -1,7 +1,5 @@
 
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 
 export function Banner() {
   return (
@@ -21,11 +19,6 @@ export function Banner() {
         <p className="text-md md:text-lg text-foreground/90 mb-6 max-w-2xl mx-auto">
           发现最新文章，深入了解前沿科技与创意生活。
         </p>
-        <Link href="/blog/first-post">
-          <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-md">
-            立即阅读
-          </Button>
-        </Link>
       </div>
     </section>
   );
