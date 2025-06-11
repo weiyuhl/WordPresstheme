@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { Menu, Search, X, Rss, Mail, Twitter as TwitterIconLucide, Github as GithubLucideIcon } from 'lucide-react';
+import { Menu, Search, X, Rss, Mail, Twitter, Github as GithubLucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
@@ -34,7 +34,6 @@ const GithubIcon = () => (
   </svg>
 );
 
-
 const mainNavLinks = [
   { href: '/category/php', label: 'PHP' },
   { href: '/category/swoole', label: 'Swoole' },
@@ -54,7 +53,7 @@ const footerNavLinks = [
 const socialLinks = [
   { href: 'https://weibo.com', label: '微博', icon: WeiboIcon, text: '微博' },
   { href: 'https://zhihu.com', label: '知乎', icon: ZhihuIcon, text: '知乎' },
-  { href: 'https://twitter.com', label: 'Twitter', icon: TwitterIconLucide },
+  { href: 'https://twitter.com', label: 'Twitter', icon: Twitter },
   { href: 'https://github.com', label: 'GitHub', icon: GithubIcon },
   { href: '#', label: 'RSS', icon: Rss },
   { href: 'mailto:info@example.com', label: 'Email', icon: Mail },
@@ -70,7 +69,7 @@ export function Header() {
         <div className="justify-self-start">
           <Sheet open={isMenuSheetOpen} onOpenChange={(open) => {
             if (open) {
-              setIsSearchSheetOpen(false); 
+              setIsSearchSheetOpen(false);
             }
             setIsMenuSheetOpen(open);
           }}>
@@ -83,9 +82,9 @@ export function Header() {
               <SheetPrimitive.Content
                 side="top"
                 className={cn(
-                  "fixed z-50 gap-4 bg-background shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-200 data-[state=open]:duration-300", 
+                  "fixed z-50 gap-4 bg-background shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-200 data-[state=open]:duration-300", 
                   "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top", 
-                  "flex flex-col p-0 text-foreground [--tw-enter-translate-y:-50px] [--tw-exit-translate-y:-50px] custom-sheet-no-internal-close" 
+                  "flex flex-col p-0 text-foreground data-[state=closed]:[--tw-exit-translate-y:-50px] data-[state=open]:[--tw-enter-translate-y:-50px] custom-sheet-no-internal-close" 
                 )}
                 style={{ top: '4rem', height: '60vh' }}
               >
@@ -154,9 +153,9 @@ export function Header() {
               <SheetPrimitive.Content
                 side="top"
                 className={cn(
-                  "fixed z-50 gap-4 bg-background shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-200 data-[state=open]:duration-300",
+                  "fixed z-50 gap-4 bg-background shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-200 data-[state=open]:duration-300",
                   "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
-                  "flex flex-col p-6 text-foreground [--tw-enter-translate-y:-50px] [--tw-exit-translate-y:-50px] custom-sheet-no-internal-close"
+                  "flex flex-col p-6 text-foreground data-[state=closed]:[--tw-exit-translate-y:-50px] data-[state=open]:[--tw-enter-translate-y:-50px] custom-sheet-no-internal-close"
                 )}
                 style={{ top: '4rem', height: '40vh' }}
               >
