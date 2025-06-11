@@ -224,9 +224,9 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         <div className="text-center text-muted-foreground text-sm mb-6">
           <span>作者：{post.authorName || '用户名称'}</span>
           <span className="mx-2">•</span>
-          <span>分类：所有文章</span>
+          <span>所有文章</span>
           <span className="mx-2">•</span>
-          <span>日期：{currentDate}</span>
+          <span>{currentDate}</span>
         </div>
       </header>
 
