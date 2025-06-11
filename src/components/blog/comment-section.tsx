@@ -15,12 +15,14 @@ interface Comment {
   avatarUrl?: string;
   date: Date;
   text: string;
+  email: string; // Added email to comment interface
 }
 
 const placeholderComments: Comment[] = [
   {
     id: '1',
     author: '访客小明',
+    email: 'ming@example.com',
     avatarUrl: 'https://placehold.co/40x40.png?text=M',
     date: new Date(2024, 6, 20, 10, 30),
     text: '这篇文章写得太棒了，非常有启发性！期待作者更多精彩分享。',
@@ -28,6 +30,7 @@ const placeholderComments: Comment[] = [
   {
     id: '2',
     author: '访客小红',
+    email: 'hong@example.com',
     avatarUrl: 'https://placehold.co/40x40.png?text=H',
     date: new Date(2024, 6, 21, 14, 15),
     text: '感谢分享，学到了很多新知识。关于人工智能在医疗领域的应用，我还有一些疑问，希望有机会能和作者深入交流。',
@@ -50,9 +53,14 @@ export function CommentSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !commentText.trim()) {
-      setError('姓名和评论内容不能为空。');
+    if (!name.trim() || !commentText.trim() || !email.trim()) {
+      setError('姓名、邮箱和评论内容均不能为空。');
       return;
+    }
+    // Basic email validation (can be more sophisticated)
+    if (!/\S+@\S+\.\S+/.test(email)) {
+        setError('请输入有效的邮箱地址。');
+        return;
     }
     setError(null);
     setIsSubmitting(true);
@@ -63,6 +71,7 @@ export function CommentSection() {
     const newComment: Comment = {
       id: Date.now().toString(), // Simple ID generation for demo
       author: name,
+      email: email,
       avatarUrl: `https://placehold.co/40x40.png?text=${name.charAt(0).toUpperCase()}`,
       date: new Date(),
       text: commentText,
@@ -93,14 +102,15 @@ export function CommentSection() {
           />
         </div>
         <div>
-          <Label htmlFor="comment-email" className="block text-sm font-medium text-foreground mb-1">邮箱 (可选)</Label>
+          <Label htmlFor="comment-email" className="block text-sm font-medium text-foreground mb-1">邮箱 <span className="text-destructive">*</span></Label>
           <Input 
             id="comment-email" 
             type="email" 
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="您的邮箱 (不会公开)" 
+            placeholder="请输入您的邮箱" 
             className="w-full"
+            required
           />
         </div>
         <div>
