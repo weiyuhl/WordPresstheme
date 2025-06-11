@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { AuthorCard } from '@/components/blog/author-card';
 import { CommentSection } from '@/components/blog/comment-section';
+import React from 'react'; // Added React import
 
 interface Post {
   slug: string;
@@ -15,7 +16,7 @@ interface Post {
   imageUrl: string;
   imageHint: string;
   tags: string[];
-  categories?: string[]; // 新增分类字段
+  categories?: string[];
   publishDate: string;
   content?: string;
 }
@@ -201,7 +202,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     <article className="container mx-auto py-12 px-4 md:px-6 max-w-3xl">
       <header className="mb-8">
         <h1 className="text-4xl font-headline font-bold mb-3 text-center">{post.title}</h1>
-        <div className="text-center text-muted-foreground text-sm mb-6"> {/* Increased bottom margin */}
+        <div className="text-center text-muted-foreground text-sm mb-6">
           <span>发布于 {post.publishDate}</span>
           {post.categories && post.categories.length > 0 && (
             <>
@@ -235,8 +236,11 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       </div>
       
       <div className="prose prose-lg dark:prose-invert max-w-none mx-auto text-foreground">
-        <p>{post.description}</p>
-        {post.content && <p className="text-xs text-muted-foreground italic">(调试信息：此文章包含额外的 'content' 字段，但当前未渲染以排查问题。)</p>}
+        {post.content ? (
+          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        ) : (
+          <p>{post.description}</p>
+        )}
       </div>
       
       <AuthorCard />
