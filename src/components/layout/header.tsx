@@ -48,15 +48,14 @@ export function Header() {
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="top" className="h-full flex flex-col p-0 bg-background text-foreground">
-              <SheetHeader className="flex flex-row items-center justify-end p-4 border-b"> {/* Modified justify-content */}
+            <SheetContent side="top" className="top-16 h-[calc(100vh-4rem)] flex flex-col p-0 bg-background text-foreground">
+              <SheetHeader className="flex flex-row items-center justify-end p-4 border-b">
                 <SheetTitle className="sr-only">导航菜单</SheetTitle>
                 <SheetClose asChild>
                   <Button variant="ghost" size="icon" aria-label="关闭菜单">
                     <X className="h-6 w-6" />
                   </Button>
                 </SheetClose>
-                {/* Removed Link and Search Button from here */}
               </SheetHeader>
 
               <nav className="flex-grow flex flex-col items-center justify-center py-8 space-y-6 overflow-y-auto">
