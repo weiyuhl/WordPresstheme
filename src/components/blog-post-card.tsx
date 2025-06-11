@@ -48,7 +48,7 @@ export function BlogPostCard({ title, description, imageUrl, imageHint, slug, ta
           {description}
         </CardDescription>
       </CardContent>
-      <CardFooter className="px-6 pt-2 pb-2 flex flex-col items-start w-full text-sm">
+      <CardFooter className="px-6 pt-2 pb-6 flex flex-col items-start w-full text-sm"> {/* Changed pb-2 to pb-6 */}
         <div className="flex items-center justify-between w-full mb-0">
           <div className="flex flex-wrap gap-1">
             {tags.map((tag) => (
@@ -63,3 +63,4 @@ export function BlogPostCard({ title, description, imageUrl, imageHint, slug, ta
     </Card>
   );
 }
+
