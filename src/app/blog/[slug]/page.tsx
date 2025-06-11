@@ -222,7 +222,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       <header className="mb-8">
         <h1 className="text-4xl font-headline font-bold mb-3 text-center">{post.title}</h1>
         <div className="text-center text-muted-foreground text-sm mb-6">
-          <span>作者：{post.authorName || '用户名称'}</span>
+          <span>{post.authorName || '用户名称'}</span>
           <span className="mx-2">•</span>
           <span>所有文章</span>
           <span className="mx-2">•</span>
