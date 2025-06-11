@@ -5,7 +5,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { PostBody } from '@/components/blog/post-body';
 
 interface Post {
   slug: string;
@@ -210,7 +209,11 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       </div>
 
       <div className="prose prose-lg dark:prose-invert max-w-none mx-auto text-foreground">
-        <PostBody description={post.description} content={post.content} />
+        {post.content ? (
+          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        ) : (
+          <p>{post.description}</p>
+        )}
       </div>
 
       <div className="mt-12 text-center">
