@@ -41,6 +41,7 @@ const mainNavLinks = [
   { href: '/category/notes', label: '技术笔记' },
   { href: '/category/resources', label: '实用资源' },
   { href: '/category/explore', label: '随便看看' },
+  { href: '/admin', label: '后台管理' },
 ];
 
 const footerNavLinks = [
